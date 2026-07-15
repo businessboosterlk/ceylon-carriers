@@ -642,7 +642,11 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 /* ==========================================================================
    FOOTER
    ========================================================================== */
-.footer{background:var(--black);color:rgba(255,255,255,.72);padding:var(--s-10) 0 var(--s-4)}
+.footer{position:relative;overflow:hidden;background:var(--black);color:rgba(255,255,255,.72);padding:var(--s-10) 0 var(--s-4)}
+.footer-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.footer-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(8,10,12,.82) 0%,rgba(8,10,12,.9) 45%,rgba(8,10,12,.96) 100%)}
+.footer>.container{position:relative;z-index:2}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;gap:var(--s-6);padding-bottom:var(--s-8)}
 .footer h5{color:#fff;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--s-3)}
 .footer ul{list-style:none;display:grid;gap:12px}
@@ -1311,26 +1315,10 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
   </div>
 </section>
 
-<!-- ============================ CTA BANNER ============================ -->
-<section class="cta-banner section-pad" id="contact">
-  <img class="cta-bg" src="images/sl-train.jpg" alt="" loading="lazy">
-  <div class="cta-scrim"></div>
-  <div class="container">
-    <span class="t-label" style="color:rgba(255,255,255,.9)">Ready when you are</span>
-    <h2 class="t-headline reveal" style="margin-top:10px">Start planning<br>your journey</h2>
-    <p class="reveal reveal-d1">Tell us where you want to go. Our travel specialists will take it from there. No obligation, just five decades of know-how at your service.</p>
-    <div class="cta-ctas reveal reveal-d2">
-      <a class="btn btn-white" data-wa-link href="#" target="_blank" rel="noopener">
-        <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.87-9.9 9.87zm8.42-18.3A11.8 11.8 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.64a11.93 11.93 0 0 0 5.77 1.47c6.58 0 11.94-5.35 11.94-11.93 0-3.18-1.24-6.18-3.5-8.4z"/></svg>
-        Chat on WhatsApp
-      </a>
-      <button class="btn btn-black" data-open-modal>Plan My Trip</button>
-    </div>
-  </div>
-</section>
-
 <!-- ============================ FOOTER ============================ -->
-<footer class="footer">
+<footer class="footer" id="contact">
+  <img class="footer-bg" src="images/sl-train.jpg" alt="" loading="lazy">
+  <div class="footer-scrim"></div>
   <div class="container">
     <div class="footer-grid">
       <div>
