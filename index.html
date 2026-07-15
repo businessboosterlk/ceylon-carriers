@@ -266,17 +266,17 @@ section{position:relative}
   transition:opacity var(--dur-slow) var(--ease-smooth);
 }
 .pcard{
-  position:relative;width:clamp(170px,17vw,236px);aspect-ratio:3/4.2;
+  position:relative;width:clamp(200px,21vw,332px);aspect-ratio:3/4.2;
   border-radius:var(--radius);overflow:hidden;flex:none;cursor:pointer;z-index:1;
   border:2px solid rgba(255,255,255,.35);
   box-shadow:0 24px 48px rgba(0,0,0,.45);
   transition:transform var(--dur-normal) var(--ease-snappy),box-shadow var(--dur-normal) var(--ease-smooth),border-color var(--dur-normal) var(--ease-smooth);
-  animation:slideTextUp .7s var(--ease-decelerate) both;
+  animation:slideTextUp .9s var(--ease-decelerate) both;
 }
 /* overlapping deck: bigger cards, tighter footprint, later cards on top */
-.pcard:nth-child(1){animation-delay:.05s;margin-top:58px;z-index:1}
-.pcard:nth-child(2){animation-delay:.14s;margin-top:26px;margin-left:-54px;z-index:2}
-.pcard:nth-child(3){animation-delay:.23s;margin-left:-54px;z-index:3}
+.pcard:nth-child(1){animation-delay:.05s;margin-top:66px;z-index:1}
+.pcard:nth-child(2){animation-delay:.16s;margin-top:30px;margin-left:-62px;z-index:2}
+.pcard:nth-child(3){animation-delay:.27s;margin-left:-62px;z-index:3}
 .pcard:hover{transform:translateY(-12px) !important;z-index:6;border-color:var(--amber);
   box-shadow:0 0 0 2px var(--amber),0 26px 60px rgba(249,177,78,.55)}
 .pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform var(--dur-medium) var(--ease-smooth)}
@@ -340,7 +340,7 @@ section{position:relative}
 
 /* Vibe hero — crossfading backgrounds + mood picker */
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg .layer{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease-smooth)}
+.hero-bg .layer{position:absolute;inset:0;opacity:0;transition:opacity 1.5s var(--ease-smooth)}
 .hero-bg .layer.on{opacity:1;z-index:1}
 .hero-bg .layer img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
 .hero-bg .layer.on img{animation:kenburns 11s var(--ease-smooth) forwards}
@@ -368,10 +368,10 @@ section{position:relative}
 
 /* Vibe hero: crossfading global backgrounds + mood pills */
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg .layer{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease-smooth)}
+.hero-bg .layer{position:absolute;inset:0;opacity:0;transition:opacity 1.5s var(--ease-smooth)}
 .hero-bg .layer.on{opacity:1}
 .hero-bg .layer img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
-.hero-bg .layer.on img{animation:kenburns 10s var(--ease-smooth) forwards}
+.hero-bg .layer.on img{animation:kenburns 12s var(--ease-smooth) forwards}
 .hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(6,10,12,.86) 0%,rgba(6,10,12,.62) 40%,rgba(6,10,12,.22) 72%,rgba(6,10,12,.42) 100%)}
 .hero .hero-copy>*{animation:slideTextUp .8s var(--ease-decelerate) both}
 .hero .hero-copy>*:nth-child(1){animation-delay:.08s}
@@ -783,7 +783,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
   .hero-grid{grid-template-columns:1fr}
   .hero-previews{justify-content:flex-start;overflow-x:auto;gap:12px;margin-top:var(--s-4);padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .hero-previews::-webkit-scrollbar{display:none}
-  .hero-previews .pcard{width:150px;margin-top:0!important;animation-delay:.2s!important}
+  .hero-previews .pcard{width:158px;margin-top:0!important;margin-left:0!important;animation-delay:.2s!important}
   .hero-arrows{display:none}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
@@ -1614,7 +1614,7 @@ const CONFIG = {
     tagline.innerHTML='<b class="hero-tagline-mood">'+esc(v.label)+'.</b> '+esc(v.tag)+'.';
     renderPreviews(v);
   }
-  function start(){stop();timer=setInterval(()=>{if(!userPicked)go(idx+1);},6000);}
+  function start(){stop();timer=setInterval(()=>{if(!userPicked)go(idx+1);},10000);}
   function stop(){if(timer){clearInterval(timer);timer=null;}}
   const nextB=document.getElementById('heroNext'),prevB=document.getElementById('heroPrev');
   if(nextB) nextB.addEventListener('click',()=>{userPicked=true;stop();go(idx+1);});
