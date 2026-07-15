@@ -361,7 +361,24 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 /* ==========================================================================
    DESTINATIONS — INBOUND / OUTBOUND TOGGLE
    ========================================================================== */
-.destinations{background:var(--grey-bg);}
+.destinations{background:var(--white);}
+
+/* ==========================================================================
+   WHAT'S YOUR VIBE — mood-based destination finder
+   ========================================================================== */
+.vibe{background:var(--grey-bg)}
+.vibe-picker{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:var(--s-6)}
+.vibe-chip{
+  display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:13px 24px;border-radius:100px;
+  border:1.5px solid rgba(13,13,13,.14);background:#fff;font-weight:700;font-size:15px;color:var(--text-secondary);
+  transition:color var(--dur-fast) var(--ease-smooth),border-color var(--dur-fast) var(--ease-smooth),
+             background-color var(--dur-fast) var(--ease-smooth),transform var(--dur-fast) var(--ease-snappy),box-shadow var(--dur-fast);
+}
+.vibe-chip svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none;flex:none;transition:stroke var(--dur-fast)}
+.vibe-chip:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+.vibe-chip.on{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:var(--shadow-teal)}
+.vibe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-3)}
+.vibe-empty{grid-column:1/-1;text-align:center;color:var(--text-muted);padding:var(--s-6) 0}
 .dest-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-5)}
 .toggle{
   display:inline-flex;background:#fff;border-radius:100px;padding:5px;
@@ -384,7 +401,8 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
   cursor:pointer;background:#dfe7e7;
   transition:transform var(--dur-normal) var(--ease-snappy),box-shadow var(--dur-normal) var(--ease-smooth),opacity var(--dur-medium) var(--ease-smooth);
 }
-.dcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.dcard{border:2px solid transparent}
+.dcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg),0 20px 44px rgba(249,177,78,.26);border-color:var(--amber)}
 .dcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-smooth)}
 .dcard:hover img{transform:scale(1.07)}
 .dcard::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,10,.82) 0%,rgba(8,10,10,.15) 48%,transparent 70%)}
@@ -401,7 +419,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 /* ==========================================================================
    TOUR PACKAGES + CURRENCY CONVERTER
    ========================================================================== */
-.packages{background:var(--white)}
+.packages{background:var(--grey-bg)}
 .pk-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-5)}
 .currency-select{
   display:inline-flex;align-items:center;gap:10px;background:var(--grey-bg);
@@ -421,7 +439,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
   display:flex;flex-direction:column;
   transition:transform var(--dur-normal) var(--ease-snappy),box-shadow var(--dur-normal) var(--ease-smooth),border-color var(--dur-fast);
 }
-.pk-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(0,130,146,.35)}
+.pk-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg),0 0 0 2px var(--amber),0 22px 46px rgba(249,177,78,.30);border-color:var(--amber)}
 .pk-media{position:relative;aspect-ratio:16/10.5;overflow:hidden}
 .pk-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-smooth)}
 .pk-card:hover .pk-media img{transform:scale(1.07)}
@@ -452,10 +470,10 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
   overflow:hidden;
 }
 .acard::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal);
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--amber);
   transform:scaleX(0);transform-origin:left;transition:transform var(--dur-medium) var(--ease-snappy);
 }
-.acard:hover{transform:translateY(-6px);border-color:rgba(0,130,146,.5);background:#1a1d1d}
+.acard:hover{transform:translateY(-6px);border-color:rgba(249,177,78,.6);background:#1a1d1d;box-shadow:0 0 0 1px rgba(249,177,78,.4),0 20px 44px rgba(249,177,78,.16)}
 .acard:hover::before{transform:scaleX(1)}
 .acard .a-icon{
   width:56px;height:56px;border-radius:16px;background:var(--teal-soft);
@@ -695,7 +713,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
    RESPONSIVE
    ========================================================================== */
 @media (max-width:1080px){
-  .dest-grid,.pk-grid,.aud-grid{grid-template-columns:repeat(2,1fr)}
+  .dest-grid,.pk-grid,.aud-grid,.vibe-grid{grid-template-columns:repeat(2,1fr)}
   .hero-grid{grid-template-columns:1fr}
   .hero-previews{display:none}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -736,7 +754,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
   .dest-toolbar,.pk-toolbar{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:480px){
-  .dest-grid,.pk-grid,.aud-grid{grid-template-columns:1fr}
+  .dest-grid,.pk-grid,.aud-grid,.vibe-grid{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(3,1fr)}
   .stat .num{font-size:30px}
   .stat .lbl{font-size:10px}
@@ -768,12 +786,12 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 <!-- ============ CCT LOGO MARK (SVG, reusable) ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="cctLogo" viewBox="0 0 100 100">
-    <!-- Amber disc -->
-    <circle cx="50" cy="50" r="50" fill="#F9B14E"/>
-    <!-- Open orbit ring -->
-    <path d="M50 13 A37 37 0 1 0 87 50" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
-    <!-- Dotted orbit, top-right -->
-    <g fill="#fff">
+    <!-- Teal disc (brand blue) -->
+    <circle cx="50" cy="50" r="50" fill="#008292"/>
+    <!-- Open orbit ring (gold) -->
+    <path d="M50 13 A37 37 0 1 0 87 50" fill="none" stroke="#F9B14E" stroke-width="5" stroke-linecap="round"/>
+    <!-- Dotted orbit, top-right (gold) -->
+    <g fill="#F9B14E">
       <circle cx="61" cy="14.7" r="2.6"/><circle cx="70.5" cy="18.4" r="2.6"/>
       <circle cx="78.4" cy="24.6" r="2.6"/><circle cx="84.4" cy="32.7" r="2.6"/>
       <circle cx="87.8" cy="42.2" r="2.6"/>
@@ -882,6 +900,30 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
       <div class="stat"><div class="num"><span data-count="10">0</span><em>+</em></div><div class="lbl">Curated Destinations</div></div>
       <div class="stat"><div class="num"><span data-count="100">0</span><em>%</em></div><div class="lbl">Tailor-made Journeys</div></div>
     </div>
+  </div>
+</section>
+
+<!-- ============================ WHAT'S YOUR VIBE ============================ -->
+<section class="vibe section-pad" id="vibe">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;max-width:660px;margin-inline:auto">
+      <span class="t-label center">Find your journey</span>
+      <h2 class="t-headline" style="margin-top:10px">What's your vibe?</h2>
+      <p class="t-body" style="margin:16px auto 0">Pick a mood and we'll show you where to go. Every journey below is tailor-made from here, inbound or outbound.</p>
+    </div>
+    <div class="vibe-picker reveal reveal-d1" id="vibePicker" role="tablist" aria-label="Choose a travel mood">
+      <button class="vibe-chip on" data-vibe="cool" role="tab" aria-selected="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></svg>Cool &amp; Misty</button>
+      <button class="vibe-chip" data-vibe="beach" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>Beach &amp; Sun</button>
+      <button class="vibe-chip" data-vibe="wild" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>Wild &amp; Nature</button>
+      <button class="vibe-chip" data-vibe="culture" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6"/></svg>Culture &amp; Heritage</button>
+      <button class="vibe-chip" data-vibe="faith" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24"><path d="M12 2v6M9 5h6M6 22V11l6-4 6 4v11M6 22h12M10 22v-4a2 2 0 0 1 4 0v4"/></svg>Faith &amp; Pilgrimage</button>
+    </div>
+    <div class="vibe-grid" id="vibeGrid"></div>
   </div>
 </section>
 
@@ -1685,6 +1727,64 @@ const SLIDES = [
   });
   window.addEventListener('load',()=>movePill(btns[0]));
   window.addEventListener('resize',()=>movePill(btns.find(b=>b.classList.contains('on'))));
+})();
+
+/* ==========================================================================
+   WHAT'S YOUR VIBE — mood-based destination finder
+   ========================================================================== */
+(function(){
+  const VIBES={
+    cool:[
+      {name:'Hill Country',line:'Tea trails, cool air and mountain railways',img:'images/tea-hills.jpg',scope:'Inbound'},
+      {name:'Bhutan',line:'Himalayan monasteries above the clouds',img:'images/tigers-nest.jpg',scope:'Outbound'},
+      {name:'Ella & the Highlands',line:'Nine Arch Bridge and misty green peaks',img:'images/nine-arch.jpg',scope:'Inbound'}
+    ],
+    beach:[
+      {name:'Southern Coast',line:'Galle, Mirissa and golden palm-lined sand',img:'images/south-coast.jpg',scope:'Inbound'},
+      {name:'Bali & the Islands',line:'Sun, surf and island temples',img:'images/bali.jpg',scope:'Outbound'},
+      {name:'The Algarve',line:'Turquoise coves and golden cliffs',img:'images/algarve.jpg',scope:'Outbound'}
+    ],
+    wild:[
+      {name:'Yala & Leopard Country',line:'Safari mornings in the wild south',img:'images/elephant.jpg',scope:'Inbound'},
+      {name:'Highland Rail Journey',line:'One of the great railway journeys',img:'images/sl-train.jpg',scope:'Inbound'},
+      {name:'Bhutan Himalayas',line:'Cliffside trails and untouched valleys',img:'images/tigers-nest.jpg',scope:'Outbound'}
+    ],
+    culture:[
+      {name:'Cultural Triangle',line:'Sigiriya and the ancient kingdoms',img:'images/sigiriya.jpg',scope:'Inbound'},
+      {name:'Golden Triangle, India',line:'Delhi, Agra and the Taj Mahal',img:'images/taj-arch.jpg',scope:'Outbound'},
+      {name:'Historic Lisbon',line:'Old-world trams and tiled streets',img:'images/lisbon-tram.jpg',scope:'Outbound'}
+    ],
+    faith:[
+      {name:'Velankanni & Chennai',line:'Pilgrimage to Our Lady of Good Health',img:'images/velankanni-basilica.jpg',scope:'Outbound'},
+      {name:'Sacred Sri Lanka',line:'Ancient temples and the cultural triangle',img:'images/sigiriya.jpg',scope:'Inbound'},
+      {name:'Shore Temples of India',line:'Coastal shrines steeped in devotion',img:'images/shore-temple.jpg',scope:'Outbound'}
+    ]
+  };
+  const grid=document.getElementById('vibeGrid');
+  const chips=[...document.querySelectorAll('#vibePicker .vibe-chip')];
+  if(!grid||!chips.length) return;
+  const arrow='<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  function render(vibe){
+    const list=VIBES[vibe]||[];
+    if(!list.length){grid.innerHTML='<p class="vibe-empty">More journeys coming soon for this mood.</p>';return;}
+    grid.innerHTML=list.map((p,i)=>
+      '<article class="dcard" data-open-modal data-dest="'+esc(p.name)+'" style="animation:slideTextUp .55s var(--ease-decelerate) both;animation-delay:'+(i*0.08)+'s">'+
+        '<img src="'+p.img+'" alt="'+esc(p.name)+'" loading="lazy" width="800" height="1066">'+
+        '<div class="dcard-body">'+
+          '<span class="dcard-tag">'+p.scope+'</span>'+
+          '<h3 class="dcard-name">'+esc(p.name)+'</h3>'+
+          '<p class="dcard-line">'+esc(p.line)+'</p>'+
+          '<span class="dcard-link">Plan this trip '+arrow+'</span>'+
+        '</div>'+
+      '</article>').join('');
+  }
+  chips.forEach(c=>c.addEventListener('click',()=>{
+    chips.forEach(x=>{x.classList.remove('on');x.setAttribute('aria-selected','false');});
+    c.classList.add('on');c.setAttribute('aria-selected','true');
+    render(c.dataset.vibe);
+  }));
+  render('cool');
 })();
 
 /* ==========================================================================
