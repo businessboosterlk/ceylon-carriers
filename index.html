@@ -359,6 +359,30 @@ section{position:relative}
 .hero .hero-copy>*:nth-child(4){animation-delay:.38s}
 .hero .hero-copy>*:nth-child(5){animation-delay:.48s}
 
+/* Vibe hero: crossfading global backgrounds + mood pills */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg .layer{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease-smooth)}
+.hero-bg .layer.on{opacity:1}
+.hero-bg .layer img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
+.hero-bg .layer.on img{animation:kenburns 10s var(--ease-smooth) forwards}
+.hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(6,10,12,.86) 0%,rgba(6,10,12,.62) 40%,rgba(6,10,12,.22) 72%,rgba(6,10,12,.42) 100%)}
+.hero .hero-copy>*{animation:slideTextUp .8s var(--ease-decelerate) both}
+.hero .hero-copy>*:nth-child(1){animation-delay:.08s}
+.hero .hero-copy>*:nth-child(2){animation-delay:.2s}
+.hero .hero-copy>*:nth-child(3){animation-delay:.32s}
+.hero .hero-copy>*:nth-child(4){animation-delay:.44s}
+.hero .hero-copy>*:nth-child(5){animation-delay:.56s}
+.hero-vibe-word{color:var(--amber)}
+.hero-tagline-mood{color:var(--amber);font-weight:800}
+.hero-vibes{display:flex;flex-wrap:wrap;gap:10px;margin:var(--s-4) 0}
+.hero-vibe{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:11px 18px;border-radius:100px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.92);font-weight:700;font-size:14px;cursor:pointer;
+  transition:background var(--dur-fast) var(--ease-smooth),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast) var(--ease-snappy),box-shadow var(--dur-fast)}
+.hero-vibe svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;flex:none}
+.hero-vibe:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.hero-vibe.on{background:var(--amber);border-color:var(--amber);color:var(--black);box-shadow:0 10px 26px rgba(249,177,78,.44)}
+
 /* ==========================================================================
    SCROLL REVEAL SYSTEM
    ========================================================================== */
@@ -1484,17 +1508,20 @@ const CONFIG = {
     culture:'<svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V10l8-5 8 5v11M9 21v-6h6v6"/></svg>',
     faith:'<svg viewBox="0 0 24 24"><path d="M12 2v6M9 5h6M6 22V11l6-4 6 4v11M6 22h12M10 22v-4a2 2 0 0 1 4 0v4"/></svg>'
   };
+  // Each mood spans multiple countries - inbound Sri Lanka AND outbound worldwide.
+  // bg = full-screen background per mood; swap any images/ file (same name) to update it everywhere.
+  // Dedicated bg-*.jpg images can replace these later for even more variety.
   const VIBES=[
-    {key:'cool',label:'Cool & Misty',bg:'images/tea-hills.jpg',tag:'Tea trails, mountain air and Himalayan peaks',
-      dests:[{name:'Hill Country',img:'images/tea-hills.jpg'},{name:'Bhutan',img:'images/tigers-nest.jpg'},{name:'Ella & the Highlands',img:'images/nine-arch.jpg'}]},
-    {key:'beach',label:'Beach & Sun',bg:'images/south-coast.jpg',tag:'Golden sand, warm seas and endless island sun',
-      dests:[{name:'Southern Coast',img:'images/south-coast.jpg'},{name:'Bali & the Islands',img:'images/bali.jpg'},{name:'The Algarve',img:'images/algarve.jpg'}]},
-    {key:'wild',label:'Wild & Nature',bg:'images/elephant.jpg',tag:'Safari mornings, rainforests and untamed trails',
-      dests:[{name:'Yala & Leopard Country',img:'images/elephant.jpg'},{name:'Highland Rail Journey',img:'images/sl-train.jpg'},{name:'Bhutan Himalayas',img:'images/tigers-nest.jpg'}]},
-    {key:'culture',label:'Culture & Heritage',bg:'images/sigiriya.jpg',tag:'Ancient kingdoms, temples and old-world cities',
-      dests:[{name:'Cultural Triangle',img:'images/sigiriya.jpg'},{name:'Golden Triangle, India',img:'images/taj-arch.jpg'},{name:'Historic Lisbon',img:'images/lisbon-tram.jpg'}]},
-    {key:'faith',label:'Faith & Pilgrimage',bg:'images/velankanni-basilica.jpg',tag:'Sacred journeys, guided with reverence',
-      dests:[{name:'Velankanni & Chennai',img:'images/velankanni-basilica.jpg'},{name:'Sacred Sri Lanka',img:'images/sigiriya.jpg'},{name:'Shore Temples of India',img:'images/shore-temple.jpg'}]}
+    {key:'cool',label:'Cool & Misty',bg:'images/tigers-nest.jpg',tag:'From the Himalayas of Bhutan to Sri Lanka’s misty tea country',
+      dests:[{name:'Bhutan',img:'images/tigers-nest.jpg'},{name:'Hill Country, Sri Lanka',img:'images/tea-hills.jpg'},{name:'Ella & the Highlands',img:'images/nine-arch.jpg'}]},
+    {key:'beach',label:'Beach & Sun',bg:'images/bali.jpg',tag:'Island sun and warm seas, from Bali to the Algarve to southern Sri Lanka',
+      dests:[{name:'Bali, Indonesia',img:'images/bali.jpg'},{name:'The Algarve, Portugal',img:'images/algarve.jpg'},{name:'Southern Sri Lanka',img:'images/south-coast.jpg'}]},
+    {key:'wild',label:'Wild & Nature',bg:'images/elephant.jpg',tag:'Safaris, rainforests and untamed trails across the world',
+      dests:[{name:'Yala Safari, Sri Lanka',img:'images/elephant.jpg'},{name:'Highland Rail Journey',img:'images/sl-train.jpg'},{name:'Bhutan Himalayas',img:'images/tigers-nest.jpg'}]},
+    {key:'culture',label:'Culture & Heritage',bg:'images/taj-arch.jpg',tag:'Ancient wonders, from the Taj Mahal to old-world Lisbon to the ruins of Ceylon',
+      dests:[{name:'Golden Triangle, India',img:'images/taj-arch.jpg'},{name:'Historic Lisbon, Portugal',img:'images/lisbon-tram.jpg'},{name:'Cultural Triangle, Sri Lanka',img:'images/sigiriya.jpg'}]},
+    {key:'faith',label:'Faith & Pilgrimage',bg:'images/velankanni-basilica.jpg',tag:'Sacred journeys across India and Sri Lanka, guided with reverence',
+      dests:[{name:'Velankanni & Chennai, India',img:'images/velankanni-basilica.jpg'},{name:'Sacred Sri Lanka',img:'images/sigiriya.jpg'},{name:'Shore Temples, India',img:'images/shore-temple.jpg'}]}
   ];
   const bg=document.getElementById('heroBg');
   const vibesWrap=document.getElementById('heroVibes');
