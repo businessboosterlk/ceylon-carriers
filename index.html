@@ -507,10 +507,12 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
    ========================================================================== */
 .worldmap{background:var(--grey-bg)}
 .wm-stage{position:relative;margin-top:var(--s-8);border-radius:var(--radius-lg);overflow:hidden;
-  background:radial-gradient(130% 120% at 70% 48%,#06424d 0%,#03222a 52%,#01161b 100%);
-  border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow-lg)}
-.wm-svg{display:block;width:100%;height:auto}
-.wm-grid line{stroke:rgba(120,220,225,.09);stroke-width:1}
+  aspect-ratio:1010/540;
+  background:radial-gradient(120% 130% at 50% 42%,#062942 0%,#03131f 58%,#010a12 100%);
+  border:1px solid rgba(60,184,255,.14);box-shadow:var(--shadow-lg)}
+.wm-map{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:.95;pointer-events:none;
+  filter:drop-shadow(0 0 5px rgba(70,190,255,.5))}
+.wm-svg{position:absolute;inset:0;width:100%;height:100%}
 .wm-arc{fill:none;stroke:var(--amber);stroke-width:2.5;stroke-linecap:round;
   opacity:0;stroke-dasharray:1;stroke-dashoffset:1;
   transition:stroke-dashoffset 1.1s var(--ease-smooth),opacity .35s}
@@ -1210,8 +1212,8 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
       <p class="t-body" style="margin:16px auto 0">From our home in Sri Lanka to the far corners of the world. Tap a destination to explore it.</p>
     </div>
     <div class="wm-stage reveal reveal-d1">
-      <svg class="wm-svg" viewBox="360 90 560 290" role="img" aria-label="Map of Ceylon Carriers destinations">
-        <g class="wm-grid" id="wmGrid"></g>
+      <img class="wm-map" src="images/world.svg" alt="" loading="lazy">
+      <svg class="wm-svg" viewBox="0 30 1010 540" preserveAspectRatio="none" role="img" aria-label="Map of Ceylon Carriers destinations">
         <g id="wmArcs"></g>
         <g id="wmPins"></g>
         <g id="wmHub"></g>
@@ -1562,6 +1564,7 @@ document.documentElement.classList.add('js-on');
       <text x="400" y="700" text-anchor="middle" fill="#fff" font-family="Arial" font-size="34" font-weight="bold" letter-spacing="6">CEYLON CARRIERS</text>
     </svg>`);
   function guard(img){
+    if(img.classList.contains('wm-map'))return; /* the world map SVG reports 0 natural size; never fallback it */
     if(img.dataset.guarded)return;
     img.dataset.guarded='1';
     img.addEventListener('error',()=>{ if(img.src!==FALLBACK) img.src=FALLBACK; },{once:false});
@@ -1860,24 +1863,23 @@ const CONFIG = {
 (function(){
   const NS='http://www.w3.org/2000/svg';
   const svg=document.querySelector('.wm-svg'); if(!svg) return;
-  const gGrid=document.getElementById('wmGrid'),gArcs=document.getElementById('wmArcs'),
+  const gArcs=document.getElementById('wmArcs'),
         gPins=document.getElementById('wmPins'),gHub=document.getElementById('wmHub'),
         card=document.getElementById('wmCard'),legend=document.getElementById('wmLegend');
-  const HUB={x:722,y:232};
+  /* Coordinates are in the world map's own space (viewBox 0 0 1010 666) so pins sit on real geography */
+  const HUB={x:702,y:441};
   const DEST=[
-    {key:'india',x:696,y:160,name:'India',line:'The Taj Mahal and the Golden Triangle',img:'images/taj-arch.jpg',dest:'Golden Triangle, India'},
-    {key:'bhutan',x:764,y:166,name:'Bhutan',line:'Cliffside monasteries in the Himalayas',img:'images/tigers-nest.jpg',dest:'Bhutan'},
-    {key:'maldives',x:700,y:256,name:'Maldives',line:'Overwater villas on turquoise lagoons',img:'images/maldives.jpg',dest:'The Maldives'},
-    {key:'turkey',x:596,y:150,name:'Turkey',line:'Hot-air balloons over Cappadocia',img:'images/turkey.jpg',dest:'Cappadocia, Turkey'},
-    {key:'africa',x:600,y:266,name:'Africa',line:'Safari across the golden savannah',img:'images/africa.jpg',dest:'African Safari'},
-    {key:'portugal',x:476,y:150,name:'Portugal',line:'Old-world Lisbon and the golden Algarve',img:'images/lisbon-tram.jpg',dest:'Historic Lisbon, Portugal'},
-    {key:'bali',x:826,y:284,name:'Bali',line:'Island temples and emerald rice terraces',img:'images/bali.jpg',dest:'Bali, Indonesia'},
-    {key:'japan',x:882,y:156,name:'Japan',line:'Snow temples and cherry blossom',img:'images/japan.jpg',dest:'Japan'}
+    {key:'india',x:709,y:406,name:'India',line:'The Taj Mahal and the Golden Triangle',img:'images/taj-arch.jpg',dest:'Golden Triangle, India'},
+    {key:'bhutan',x:732,y:380,name:'Bhutan',line:'Cliffside monasteries in the Himalayas',img:'images/tigers-nest.jpg',dest:'Bhutan'},
+    {key:'maldives',x:681,y:453,name:'Maldives',line:'Overwater villas on turquoise lagoons',img:'images/maldives.jpg',dest:'The Maldives'},
+    {key:'turkey',x:574,y:344,name:'Turkey',line:'Hot-air balloons over Cappadocia',img:'images/turkey.jpg',dest:'Cappadocia, Turkey'},
+    {key:'africa',x:586,y:464,name:'Africa',line:'Safari across the golden savannah',img:'images/africa.jpg',dest:'African Safari'},
+    {key:'portugal',x:549,y:352,name:'Portugal',line:'Old-world Lisbon and the golden Algarve',img:'images/lisbon-tram.jpg',dest:'Historic Lisbon, Portugal'},
+    {key:'bali',x:815,y:485,name:'Bali',line:'Island temples and emerald rice terraces',img:'images/bali.jpg',dest:'Bali, Indonesia'},
+    {key:'japan',x:853,y:357,name:'Japan',line:'Snow temples and cherry blossom',img:'images/japan.jpg',dest:'Japan'}
   ];
   const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
   const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
-  for(let x=83;x<1000;x+=83) gGrid.appendChild(el('line',{x1:x,y1:0,x2:x,y2:500}));
-  for(let y=62;y<500;y+=62) gGrid.appendChild(el('line',{x1:0,y1:y,x2:1000,y2:y}));
   const arcPath=(x,y)=>{const cx=(HUB.x+x)/2,cy=(HUB.y+y)/2-Math.hypot(x-HUB.x,y-HUB.y)*0.22;
     return 'M'+HUB.x+' '+HUB.y+' Q'+cx.toFixed(1)+' '+cy.toFixed(1)+' '+x+' '+y;};
   DEST.forEach(d=>{const p=el('path',{class:'wm-arc',d:arcPath(d.x,d.y),pathLength:1});p.dataset.key=d.key;gArcs.appendChild(p);});
