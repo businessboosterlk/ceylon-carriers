@@ -496,6 +496,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 .pk-foot{margin-top:auto;padding-top:var(--s-2);display:flex;align-items:flex-end;justify-content:space-between;gap:10px;border-top:1px solid rgba(13,13,13,.06)}
 .pk-price small{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
 .pk-price .amt{font-size:20px;font-weight:800;color:var(--black);white-space:nowrap}
+.pk-price .amt.sm{font-size:16px;letter-spacing:0;color:var(--teal)}
 .pk-price .amt em{font-style:normal;color:var(--teal);font-size:13px;font-weight:800;margin-right:3px}
 .pk-btn{min-height:44px;padding:11px 20px;font-size:13.5px}
 
@@ -507,7 +508,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
    ========================================================================== */
 .worldmap{background:var(--grey-bg)}
 .wm-stage{position:relative;margin-top:var(--s-8);border-radius:var(--radius-lg);overflow:hidden;
-  aspect-ratio:1010/540;
+  aspect-ratio:1010/600;
   background:radial-gradient(120% 130% at 50% 42%,#062942 0%,#03131f 58%,#010a12 100%);
   border:1px solid rgba(60,184,255,.14);box-shadow:var(--shadow-lg)}
 .wm-map{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:.95;pointer-events:none;
@@ -1118,84 +1119,137 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 <!-- ============================ PACKAGES ============================ -->
 <section class="packages section-pad" id="packages">
   <div class="container">
-    <div class="pk-toolbar">
-      <div class="section-head reveal" style="margin-bottom:0">
-        <span class="t-label">Signature journeys</span>
-        <h2 class="t-headline" style="margin-top:10px">Featured Tour Packages</h2>
-      </div>
-      <div class="currency-select reveal reveal-d1">
-        <label for="currency">Show prices in</label>
-        <select id="currency" aria-label="Select currency">
-          <option value="LKR" selected>LKR · Sri Lankan Rupee</option>
-          <option value="USD">USD · US Dollar</option>
-          <option value="GBP">GBP · British Pound</option>
-          <option value="AUD">AUD · Australian Dollar</option>
-          <option value="EUR">EUR · Euro</option>
-        </select>
-      </div>
+    <div class="section-head reveal" style="text-align:center;max-width:680px;margin-inline:auto">
+      <span class="t-label center">Signature journeys</span>
+      <h2 class="t-headline" style="margin-top:10px">Our Tour Packages</h2>
+      <p class="t-body" style="margin:16px auto 0">A selection of our most-loved journeys, at home in Sri Lanka and out across the world. Every tour is tailor-made to you.</p>
     </div>
 
     <div class="pk-grid">
       <article class="pk-card reveal">
         <div class="pk-media">
-          <img src="images/tea-hills.jpg" alt="Sunbeams over misty green mountains on the Sri Lanka Highlights tour" loading="lazy" width="800" height="525">
+          <img src="images/tea-hills.jpg" alt="Misty tea-country mountains on the Sri Lanka Highlights tour" loading="lazy" width="800" height="525">
           <span class="pk-badge">7D / 6N</span>
-          <span class="pk-scope">Inbound</span>
+          <span class="pk-scope">Sri Lanka</span>
         </div>
         <div class="pk-body">
           <h3 class="pk-name">Sri Lanka Highlights</h3>
-          <p class="pk-line">Sigiriya, Kandy, Ella & the south coast. The island's icons in one seamless route.</p>
+          <p class="pk-line">Sigiriya, Kandy, Ella and the south coast. The island's icons in one seamless route.</p>
           <div class="pk-foot">
-            <div class="pk-price"><small>Private tour</small><span class="amt">Tailor-made</span></div>
-            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Highlights">Get a Quote</button>
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>US$</em>699</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Highlights 7D/6N">View Tour</button>
           </div>
         </div>
       </article>
 
       <article class="pk-card reveal reveal-d1">
         <div class="pk-media">
-          <img src="images/velankanni-basilica.jpg" alt="The white spires of Velankanni Basilica near the shore, Tamil Nadu" loading="lazy" width="800" height="525">
-          <span class="pk-badge">5D / 4N</span>
-          <span class="pk-scope">Outbound</span>
+          <img src="images/sigiriya.jpg" alt="Sigiriya rock fortress reflected in a lotus pond" loading="lazy" width="800" height="525">
+          <span class="pk-badge">4D / 3N</span>
+          <span class="pk-scope">Sri Lanka</span>
         </div>
         <div class="pk-body">
-          <h3 class="pk-name">Velankanni & Chennai</h3>
-          <p class="pk-line">A guided pilgrimage to Our Lady of Good Health with time to explore Chennai.</p>
+          <h3 class="pk-name">Cultural Triangle</h3>
+          <p class="pk-line">Sigiriya, Dambulla and the ancient kingdoms. Sri Lanka's heart of heritage.</p>
           <div class="pk-foot">
-            <div class="pk-price"><small>From · per person</small><span class="amt" data-lkr="225000"><em>LKR</em>225,000</span></div>
-            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Velankanni & Chennai">View Tour</button>
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>US$</em>499</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Cultural Triangle 4D/3N">View Tour</button>
           </div>
         </div>
       </article>
 
       <article class="pk-card reveal reveal-d2">
         <div class="pk-media">
-          <img src="images/taj-arch.jpg" alt="Marble archway framing the Taj Mahal at sunrise" loading="lazy" width="800" height="525">
-          <span class="pk-badge">9D / 8N</span>
-          <span class="pk-scope">Outbound</span>
+          <img src="images/elephant.jpg" alt="Wild elephant in golden light in Yala National Park" loading="lazy" width="800" height="525">
+          <span class="pk-badge">8D / 7N</span>
+          <span class="pk-scope">Sri Lanka</span>
         </div>
         <div class="pk-body">
-          <h3 class="pk-name">Bhutan & Golden Triangle</h3>
-          <p class="pk-line">Himalayan monasteries, then Delhi, Agra and Jaipur. Two worlds, one itinerary.</p>
+          <h3 class="pk-name">Wildlife Safari</h3>
+          <p class="pk-line">Leopards at Yala, elephants at Udawalawe and the wild south, expertly guided.</p>
           <div class="pk-foot">
-            <div class="pk-price"><small>From · per person</small><span class="amt" data-lkr="899000"><em>LKR</em>899,000</span></div>
-            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Bhutan & Golden Triangle">View Tour</button>
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>US$</em>999</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Wildlife Safari 8D/7N">View Tour</button>
           </div>
         </div>
       </article>
 
       <article class="pk-card reveal reveal-d3">
         <div class="pk-media">
-          <img src="images/algarve.jpg" alt="Golden cliffs and turquoise coves of the Algarve coast, Portugal" loading="lazy" width="800" height="525">
-          <span class="pk-badge">9D / 8N</span>
-          <span class="pk-scope">Outbound</span>
+          <img src="images/canoe-couple.jpg" alt="Couple paddling a wooden canoe across a mountain lake at golden hour" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Honeymoon</span>
+          <span class="pk-scope">Sri Lanka</span>
         </div>
         <div class="pk-body">
-          <h3 class="pk-name">Portugal Explorer</h3>
-          <p class="pk-line">Lisbon's hills, Porto's river valleys and the golden Algarve, fully escorted.</p>
+          <h3 class="pk-name">Sri Lanka Honeymoon</h3>
+          <p class="pk-line">Private villas, sunrise trains and candle-lit dinners, planned to the last detail.</p>
           <div class="pk-foot">
-            <div class="pk-price"><small>From · per person</small><span class="amt" data-lkr="789000"><em>LKR</em>789,000</span></div>
-            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Portugal Explorer">View Tour</button>
+            <div class="pk-price"><small>From · per couple</small><span class="amt"><em>US$</em>999</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Honeymoon">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal">
+        <div class="pk-media">
+          <img src="images/maldives.jpg" alt="Overwater villas on a turquoise Maldives lagoon" loading="lazy" width="800" height="525">
+          <span class="pk-badge">5D / 4N</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Maldives Escape</h3>
+          <p class="pk-line">Overwater villas, turquoise lagoons and a reef at your doorstep.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>LKR</em>249,000</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="The Maldives 5D/4N">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d1">
+        <div class="pk-media">
+          <img src="images/taj-arch.jpg" alt="The Taj Mahal framed by a marble archway at sunrise" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Escorted</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Golden Triangle, India</h3>
+          <p class="pk-line">Delhi, Jaipur and Agra, home of the Taj Mahal. Year-round escorted departures.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>Escorted group tour</small><span class="amt sm">Ask for dates</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Golden Triangle, India">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d2">
+        <div class="pk-media">
+          <img src="images/bali.jpg" alt="Balinese sea temple and rice terraces at golden hour" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Escorted</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Blissful Bali</h3>
+          <p class="pk-line">Island temples, volcano sunrises and emerald rice terraces. Year-round departures.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>Escorted group tour</small><span class="amt sm">Ask for dates</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Blissful Bali">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d3">
+        <div class="pk-media">
+          <img src="images/africa.jpg" alt="Elephants on the golden African savannah at sunset" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Safari</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Explore Kenya</h3>
+          <p class="pk-line">The Masai Mara, the Great Rift lakes and the big five. A safari of a lifetime.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>Escorted group tour</small><span class="amt sm">Ask for dates</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Explore Kenya Safari">View Tour</button>
           </div>
         </div>
       </article>
@@ -1213,7 +1267,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
     </div>
     <div class="wm-stage reveal reveal-d1">
       <img class="wm-map" src="images/world.svg" alt="" loading="lazy">
-      <svg class="wm-svg" viewBox="0 30 1010 540" preserveAspectRatio="none" role="img" aria-label="Map of Ceylon Carriers destinations">
+      <svg class="wm-svg" viewBox="0 40 1010 600" preserveAspectRatio="none" role="img" aria-label="Map of Ceylon Carriers destinations">
         <g id="wmArcs"></g>
         <g id="wmPins"></g>
         <g id="wmHub"></g>
@@ -1788,6 +1842,7 @@ const CONFIG = {
    ========================================================================== */
 (function(){
   const sel=document.getElementById('currency');
+  if(!sel) return; /* currency selector removed; prices are now shown as-is */
   const prices=[...document.querySelectorAll('[data-lkr]')];
   function fmt(n){return Math.round(n).toLocaleString('en-US');}
   sel.addEventListener('change',()=>{
