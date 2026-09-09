@@ -48,7 +48,7 @@ every URL in dev and preview includes it. See "Moving to the real domain" below.
 | `public/` | Images, videos, `favicon.svg`, `og.jpg` (the WhatsApp share image), `llms.txt`. Copied to `dist/` as is. |
 | `.github/workflows/deploy.yml` | Builds and publishes to GitHub Pages on every push to `main`. |
 
-## How enquiries work today, and the backend contract
+## How enquiries work today and the backend contract
 
 Every button ends in a WhatsApp message to the number in `config.js`, pre-filled
 with what the visitor was looking at (tour name, package, page). The message
@@ -71,7 +71,7 @@ Content-Type: application/json
   "message": "...", "page": "contact", "source": "website" }
 ```
 
-Build it as a Node route (Next.js API route or Express), write to a Supabase table,
+Build it as a Node route (Next.js API route or Express), write to a Supabase table
 and call it **in addition to** opening WhatsApp, never instead of. The two places
 to add the call are marked by the `window.open(waURL(` lines.
 
