@@ -1,0 +1,124 @@
+---
+// SRI LANKA TOURS: the inbound page, written for a visitor from abroad.
+// Tours come from src/data/tours.json (the client's own nine, from their store).
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { SITE, BASE, IMG, waURL } from '../scripts/config.js';
+import { breadcrumb, faqSchema, siteOf } from '../scripts/seo.js';
+import data from '../data/tours.json';
+
+const site = siteOf(Astro.site);
+const path = 'sri-lanka-tours/';
+const tours = data.tours;
+
+const faqs = [
+  { q: 'Do I need a visa to visit Sri Lanka?',
+    a: 'Most visitors apply online for an Electronic Travel Authorisation before they fly. The rules differ by nationality and change from year to year, so tell us your passport when you enquire and we will confirm exactly what applies to you.' },
+  { q: 'When is the best time to visit Sri Lanka?',
+    a: 'There is always a good coast. December to March suits the west and south coasts and the hill country. April to September favours the east coast around Trincomalee and Arugam Bay. The cultural triangle works all year round.' },
+  { q: 'Are your tours private or in a group?',
+    a: 'Private. Each tour runs in your own air-conditioned vehicle with an English-speaking chauffeur guide, so the pace and the stops are yours. Nobody else is on the itinerary unless you bring them.' },
+  { q: 'Can I change a tour?',
+    a: 'Yes. Every route on this page is a starting point. Swap hotels, add nights, drop a city or add whale watching in Mirissa between November and April. Send us your dates and we will rebuild it around you.' },
+  { q: 'How do I get a price?',
+    a: 'Message us on WhatsApp with your dates, the number of travellers and the route you like. Prices are per person on double sharing and depend on the season and the hotels you choose, so we quote each trip properly instead of printing one number that may not fit yours.' }
+];
+const schema = [breadcrumb(site, BASE, [{ name: 'Sri Lanka Tours', path }]), faqSchema(faqs)];
+const ask = t => waURL(`Hi Ceylon Carriers! I'm interested in the ${t.name} tour (${t.duration}). Could you send me the itinerary and a price for my dates?`);
+const planWa = waURL("Hi Ceylon Carriers! I'm planning a visit to Sri Lanka. Could you help me plan a private tour?");
+---
+<Layout
+  title="Private Sri Lanka Tours | Ceylon Carriers Travels"
+  description="Private Sri Lanka tours from 4 to 14 days with your own chauffeur guide, half-board hotels and airport transfers. Planned from Colombo since 1973."
+  path={path}
+  page="tours"
+  schema={schema}
+>
+  <PageHero
+    eyebrow="For visitors to Sri Lanka"
+    title="Sri Lanka, planned by<br>people who <em>live here</em>"
+    sub="Private tours with your own chauffeur guide, from four days to a fortnight. Tell us the dates and the pace. We do the rest from our office in Colombo."
+    image="tea-hills.jpg"
+    alt="Misty tea estates rolling across Sri Lanka's hill country"
+    crumb="Sri Lanka Tours"
+  >
+    <div class="phero-ctas">
+      <a class="btn btn-gold btn-lg" href="#tours">See the nine tours</a>
+      <a class="btn btn-glass btn-lg" href={planWa} target="_blank" rel="noopener"><WaIcon /> WhatsApp Us</a>
+    </div>
+  </PageHero>
+
+  <section class="intro section-pad">
+    <div class="container intro-grid">
+      <div class="reveal">
+        <span class="t-label">How it works</span>
+        <p class="lede" style="margin-top:12px">Ceylon Carriers Travels is a Colombo company that has planned Sri Lanka for visitors since 1973. Every tour below is private: your own air-conditioned vehicle, an English-speaking chauffeur guide, half-board hotels and airport transfers both ways.</p>
+        <p class="t-body">Pick a route, then change anything you like. Most guests do. The four-day tour is where first visits start. The ten-day circuit is for people who want the whole island in one go.</p>
+      </div>
+      <div class="facts reveal reveal-d1">
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M5 17h14M5 17a2 2 0 0 1-2-2V9l3-5h12l3 5v6a2 2 0 0 1-2 2M7 17v2M17 17v2"/><circle cx="8" cy="13" r="1.2"/><circle cx="16" cy="13" r="1.2"/></svg><div><strong>Private, never a coach group</strong><span>Your own vehicle and chauffeur guide for the whole trip.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-6h6v6"/></svg><div><strong>Half board, every night</strong><span>Breakfast and dinner at each hotel are in the price.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/><circle cx="12" cy="12" r="10"/></svg><div><strong>Airport transfers both ways</strong><span>Met on arrival, returned for your flight home.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg><div><strong>Entrance fees included</strong><span>Sites on the programme are paid for before you arrive.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="tours" style="background:var(--grey-bg)">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="t-label">Nine ways to see the island</span>
+        <h2 class="t-headline" style="margin-top:10px">Choose your route</h2>
+        <p class="t-body" style="margin-top:16px">From a four-day taster to a fortnight of Ayurveda. Every tour is priced per person on double sharing once we know your dates, hotels and season.</p>
+      </div>
+      <div class="tour-grid">
+        {tours.map((t, i) => (
+          <article class={'pk-card tour reveal' + (i % 3 ? ' reveal-d' + (i % 3) : '')} id={t.slug}>
+            <div class="pk-media">
+              <img src={IMG + t.image} alt={t.alt} loading="lazy" width="800" height="550">
+              <span class="pk-badge">{t.badge}</span>
+            </div>
+            <div class="pk-body">
+              <h3 class="pk-name">{t.name}</h3>
+              <p class="tour-route">{t.route.join(' · ')}</p>
+              <p class="pk-line">{t.blurb}</p>
+              <ul class="tour-hl">{t.highlights.map(h => <li>{h}</li>)}</ul>
+              <div class="pk-foot">
+                <div class="pk-price"><small>Per person, double sharing</small><span class="amt sm">Price on request</span></div>
+                <a class="btn btn-teal pk-btn" href={ask(t)} target="_blank" rel="noopener">Ask about this tour</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-pad">
+    <div class="container band-grid">
+      <div class="reveal">
+        <span class="t-label">What is in the price</span>
+        <h2 class="t-headline" style="color:#fff;margin-top:10px">Every Sri Lanka<br>tour includes</h2>
+        <p class="t-body" style="margin-top:16px">The same five things on every route, so the quote you get is the trip you take.</p>
+        <p class="fine">Rates are quoted per person on double sharing. Every package can be changed to suit you.</p>
+      </div>
+      <ul class="ticks reveal reveal-d1">
+        {data.includes.map(i => <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>{i}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Faq items={faqs} eyebrow="Before you book" title="Questions visitors ask us" />
+
+  <CtaBand
+    eyebrow="Your dates, our island"
+    title="Tell us when<br>you're coming"
+    sub="Send your dates and how many of you are travelling. You'll get a route, hotels and a price for your trip, not a brochure."
+    image="south-coast.jpg"
+    alt="Stilt fisherman at sunset on Sri Lanka's southern coast"
+    message="Hi Ceylon Carriers! I'd like to visit Sri Lanka. My dates are: ... Number of travellers: ... Could you suggest a route and a price?"
+  />
+</Layout>

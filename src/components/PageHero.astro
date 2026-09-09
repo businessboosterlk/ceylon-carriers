@@ -1,0 +1,19 @@
+---
+// Compact photographic hero for inner pages. Breadcrumb, eyebrow, one big line,
+// one supporting line, then whatever the page puts in the slot (usually CTAs).
+import { BASE, IMG } from '../scripts/config.js';
+const { eyebrow, title, sub, image, alt = '', crumb } = Astro.props;
+---
+<header class="phero">
+  <img class="phero-bg" src={IMG + image} alt={alt} width="1600" height="900" fetchpriority="high">
+  <div class="phero-scrim"></div>
+  <div class="container phero-inner">
+    <div class="hero-copy" style="max-width:none">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href={BASE}>Home</a><span>/</span><span aria-current="page" style="color:#fff">{crumb}</span></nav>
+      {eyebrow && <span class="hero-eyebrow">{eyebrow}</span>}
+      <h1 class="phero-title" set:html={title} />
+      {sub && <p class="phero-sub">{sub}</p>}
+      <slot />
+    </div>
+  </div>
+</header>

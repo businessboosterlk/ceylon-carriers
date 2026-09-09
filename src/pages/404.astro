@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BASE } from '../scripts/config.js';
+---
+<Layout title="Page not found | Ceylon Carriers Travels" description="That page has gone travelling. Head back to the home page or pick a tour." path="404/" page="404">
+  <section class="lost">
+    <div class="container">
+      <h1>Gone travelling</h1>
+      <p>That page is not here. The journeys are, though.</p>
+      <div class="hero-ctas" style="justify-content:center">
+        <a class="btn btn-teal" href={BASE}>Back to home</a>
+        <a class="btn btn-outline" href={BASE + 'sri-lanka-tours/'}>Sri Lanka Tours</a>
+        <a class="btn btn-outline" href={BASE + 'holidays-abroad/'}>Holidays Abroad</a>
+      </div>
+    </div>
+  </section>
+</Layout>

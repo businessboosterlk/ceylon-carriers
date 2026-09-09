@@ -1,0 +1,474 @@
+---
+// HOME PAGE. The markup below is the July 2026 single-file build, unchanged in
+// design and copy, with image paths made base-aware. Nav, footer, sticky bar and
+// the enquiry modal live in the shared Layout. Home-only behaviour is in
+// src/scripts/home.js. Do not restyle this page without a written reason.
+import Layout from '../layouts/Layout.astro';
+import { BASE, IMG } from '../scripts/config.js';
+---
+<Layout
+  title="Ceylon Carriers Travels | Premium Sri Lanka Tours & Worldwide Travel Since 1973"
+  description="Ceylon Carriers Travels: 50+ years of travel excellence. Tailored inbound Sri Lanka tours and outbound holidays for Sri Lankan travellers. Plan your journey today."
+  path=""
+  page="home"
+>
+<!-- ============================ HERO — WHAT'S YOUR VIBE ============================ -->
+<header class="hero" id="home">
+  <!-- Crossfading background layers, one per vibe (injected by JS) -->
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-ov"></div>
+
+  <div class="hero-content">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">Crafting journeys since 1973</span>
+        <h1 class="hero-title">What's your<br><span class="hero-vibe-word">vibe?</span></h1>
+        <p class="hero-desc" id="heroTagline">Pick a mood and we'll show you where to go. Inbound Sri Lanka, or out into the world.</p>
+        <div class="hero-vibes" id="heroVibes" role="tablist" aria-label="Choose a travel mood"></div>
+        <div class="hero-ctas">
+          <button class="btn btn-teal btn-lg" data-open-modal>Plan My Trip</button>
+          <a class="btn btn-gold btn-lg" id="heroRecCta" href="#" target="_blank" rel="noopener" aria-label="Send your matched trips to us on WhatsApp">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.87-9.9 9.87zm8.42-18.3A11.8 11.8 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.64a11.93 11.93 0 0 0 5.77 1.47c6.58 0 11.94-5.35 11.94-11.93 0-3.18-1.24-6.18-3.5-8.4z"/></svg>
+            <span id="heroRecText">Get my trip matches</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-previews" id="heroPreviews" aria-label="Destinations for this mood"></div>
+    </div>
+  </div>
+
+  <div class="hero-arrows">
+    <button class="h-arrow" id="heroPrev" aria-label="Previous mood">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="h-arrow" id="heroNext" aria-label="Next mood">
+      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============================ TRUST BAR ============================ -->
+<section class="trust">
+  <div class="container trust-inner">
+    <div class="reveal">
+      <div class="trust-line">
+        <span class="year-badge">EST. 1973</span>
+        <span class="t-label">50+ Years of Travel Excellence</span>
+      </div>
+      <h2 class="t-headline">Half a century of<br>journeys done right</h2>
+      <p class="t-body" style="margin-top:16px">From our first departure in 1973 to today, Ceylon Carriers has guided generations of travellers into Sri Lanka and out into the world, with care you can only earn over decades.</p>
+    </div>
+    <div class="stats reveal reveal-d2">
+      <div class="stat"><div class="num"><span data-count="50">0</span><em>+</em></div><div class="lbl">Years of Service</div></div>
+      <div class="stat"><div class="num"><span data-count="10">0</span><em>+</em></div><div class="lbl">Curated Destinations</div></div>
+      <div class="stat"><div class="num"><span data-count="100">0</span><em>%</em></div><div class="lbl">Tailor-made Journeys</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DESTINATIONS ============================ -->
+<section class="destinations section-pad" id="destinations">
+  <div class="container">
+    <div class="dest-toolbar">
+      <div class="section-head reveal" style="margin-bottom:0">
+        <span class="t-label">Where will you go?</span>
+        <h2 class="t-headline" style="margin-top:10px">Destinations</h2>
+      </div>
+      <div class="toggle reveal reveal-d1" id="scopeToggle" role="tablist" aria-label="Inbound or outbound destinations">
+        <div class="pill" id="togglePill"></div>
+        <button class="on" data-scope="inbound" role="tab" aria-selected="true">Visiting Sri Lanka</button>
+        <button data-scope="outbound" role="tab" aria-selected="false">Travelling Abroad</button>
+      </div>
+    </div>
+
+    <div class="dest-grid" id="destGrid">
+      <!-- INBOUND -->
+      <article class="dcard reveal" data-scope="inbound" data-open-modal data-dest="Cultural Triangle">
+        <img src={IMG + 'sigiriya.jpg'} alt="Sigiriya rock fortress reflected in a lotus pond at golden hour" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Inbound</span>
+          <h3 class="dcard-name">Cultural Triangle</h3>
+          <p class="dcard-line">Sigiriya, Anuradhapura & ancient kingdoms</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="dcard reveal reveal-d1" data-scope="inbound" data-open-modal data-dest="Hill Country">
+        <img src={IMG + 'nine-arch.jpg'} alt="Nine Arch Bridge curving through jungle in Ella, Sri Lanka" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Inbound</span>
+          <h3 class="dcard-name">Hill Country</h3>
+          <p class="dcard-line">Kandy, Ella & misty tea estates by rail</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="dcard reveal reveal-d2" data-scope="inbound" data-open-modal data-dest="Southern Coast">
+        <img src={IMG + 'south-coast.jpg'} alt="Stilt fisherman at sunset on Sri Lanka's southern coast" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Inbound</span>
+          <h3 class="dcard-name">Southern Coast</h3>
+          <p class="dcard-line">Galle, Mirissa & palm-lined golden beaches</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="dcard reveal reveal-d3" data-scope="inbound" data-open-modal data-dest="Wildlife & Safari">
+        <img src={IMG + 'elephant.jpg'} alt="Wild elephant on a dusty track in Yala National Park at golden hour" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Inbound</span>
+          <h3 class="dcard-name">Wildlife & Safari</h3>
+          <p class="dcard-line">Yala, Udawalawe & leopard country</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+
+      <!-- OUTBOUND -->
+      <article class="dcard reveal hidden" data-scope="outbound" data-open-modal data-dest="Bhutan & Golden Triangle">
+        <img src={IMG + 'tigers-nest.jpg'} alt="Tiger's Nest monastery on a cliff face in Bhutan" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Outbound</span>
+          <h3 class="dcard-name">Bhutan & Golden Triangle</h3>
+          <p class="dcard-line">Thimphu, Delhi, Agra & Jaipur in one journey</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="dcard reveal reveal-d1 hidden" data-scope="outbound" data-open-modal data-dest="Portugal">
+        <img src={IMG + 'lisbon-tram.jpg'} alt="Classic yellow tram climbing a hillside street in Lisbon, Portugal" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Outbound</span>
+          <h3 class="dcard-name">Portugal</h3>
+          <p class="dcard-line">Lisbon, Porto & the Algarve coastline</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="dcard reveal reveal-d2 hidden" data-scope="outbound" data-open-modal data-dest="Velankanni & Chennai">
+        <img src={IMG + 'shore-temple.jpg'} alt="Shore Temple of Mahabalipuram at sunrise near Chennai" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Outbound</span>
+          <h3 class="dcard-name">Velankanni & Chennai</h3>
+          <p class="dcard-line">A soulful pilgrimage along India's east coast</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+      <article class="dcard reveal reveal-d3 hidden" data-scope="outbound" data-open-modal data-dest="Southeast Asia">
+        <img src={IMG + 'bali.jpg'} alt="Rice terraces and temple gate at sunrise in Bali" loading="lazy" width="800" height="1066">
+        <div class="dcard-body">
+          <span class="dcard-tag">Outbound</span>
+          <h3 class="dcard-name">Southeast Asia</h3>
+          <p class="dcard-line">Bali, Bangkok & beyond, island to city</p>
+          <span class="dcard-link">View Tours <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PACKAGES ============================ -->
+<section class="packages section-pad" id="packages">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;max-width:680px;margin-inline:auto">
+      <span class="t-label center">Signature journeys</span>
+      <h2 class="t-headline" style="margin-top:10px">Our Tour Packages</h2>
+      <p class="t-body" style="margin:16px auto 0">A selection of our most-loved journeys, at home in Sri Lanka and out across the world. Every tour is tailor-made to you.</p>
+    </div>
+
+    <div class="pk-grid">
+      <article class="pk-card reveal">
+        <div class="pk-media">
+          <img src={IMG + 'tea-hills.jpg'} alt="Misty tea-country mountains on the Sri Lanka Highlights tour" loading="lazy" width="800" height="525">
+          <span class="pk-badge">7D / 6N</span>
+          <span class="pk-scope">Sri Lanka</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Sri Lanka Highlights</h3>
+          <p class="pk-line">Sigiriya, Kandy, Ella and the south coast. The island's icons in one seamless route.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>US$</em>699</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Highlights 7D/6N">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d1">
+        <div class="pk-media">
+          <img src={IMG + 'sigiriya.jpg'} alt="Sigiriya rock fortress reflected in a lotus pond" loading="lazy" width="800" height="525">
+          <span class="pk-badge">4D / 3N</span>
+          <span class="pk-scope">Sri Lanka</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Cultural Triangle</h3>
+          <p class="pk-line">Sigiriya, Dambulla and the ancient kingdoms. Sri Lanka's heart of heritage.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>US$</em>499</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Cultural Triangle 4D/3N">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d2">
+        <div class="pk-media">
+          <img src={IMG + 'elephant.jpg'} alt="Wild elephant in golden light in Yala National Park" loading="lazy" width="800" height="525">
+          <span class="pk-badge">8D / 7N</span>
+          <span class="pk-scope">Sri Lanka</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Wildlife Safari</h3>
+          <p class="pk-line">Leopards at Yala, elephants at Udawalawe and the wild south, expertly guided.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>US$</em>999</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Wildlife Safari 8D/7N">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d3">
+        <div class="pk-media">
+          <img src={IMG + 'canoe-couple.jpg'} alt="Couple paddling a wooden canoe across a mountain lake at golden hour" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Honeymoon</span>
+          <span class="pk-scope">Sri Lanka</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Sri Lanka Honeymoon</h3>
+          <p class="pk-line">Private villas, sunrise trains and candle-lit dinners, planned to the last detail.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>From · per couple</small><span class="amt"><em>US$</em>999</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Sri Lanka Honeymoon">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal">
+        <div class="pk-media">
+          <img src={IMG + 'maldives.jpg'} alt="Overwater villas on a turquoise Maldives lagoon" loading="lazy" width="800" height="525">
+          <span class="pk-badge">5D / 4N</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Maldives Escape</h3>
+          <p class="pk-line">Overwater villas, turquoise lagoons and a reef at your doorstep.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>From · per person</small><span class="amt"><em>LKR</em>249,000</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="The Maldives 5D/4N">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d1">
+        <div class="pk-media">
+          <img src={IMG + 'taj-arch.jpg'} alt="The Taj Mahal framed by a marble archway at sunrise" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Escorted</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Golden Triangle, India</h3>
+          <p class="pk-line">Delhi, Jaipur and Agra, home of the Taj Mahal. Year-round escorted departures.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>Escorted group tour</small><span class="amt sm">Ask for dates</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Golden Triangle, India">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d2">
+        <div class="pk-media">
+          <img src={IMG + 'bali.jpg'} alt="Balinese sea temple and rice terraces at golden hour" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Escorted</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Blissful Bali</h3>
+          <p class="pk-line">Island temples, volcano sunrises and emerald rice terraces. Year-round departures.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>Escorted group tour</small><span class="amt sm">Ask for dates</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Blissful Bali">View Tour</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="pk-card reveal reveal-d3">
+        <div class="pk-media">
+          <img src={IMG + 'africa.jpg'} alt="Elephants on the golden African savannah at sunset" loading="lazy" width="800" height="525">
+          <span class="pk-badge">Safari</span>
+          <span class="pk-scope">Worldwide</span>
+        </div>
+        <div class="pk-body">
+          <h3 class="pk-name">Explore Kenya</h3>
+          <p class="pk-line">The Masai Mara, the Great Rift lakes and the big five. A safari of a lifetime.</p>
+          <div class="pk-foot">
+            <div class="pk-price"><small>Escorted group tour</small><span class="amt sm">Ask for dates</span></div>
+            <button class="btn btn-teal pk-btn" data-open-modal data-dest="Explore Kenya Safari">View Tour</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WORLD MAP ============================ -->
+<section class="worldmap section-pad" id="worldmap">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;max-width:660px;margin-inline:auto">
+      <span class="t-label center">Our reach</span>
+      <h2 class="t-headline" style="margin-top:10px">Where we'll take you</h2>
+      <p class="t-body" style="margin:16px auto 0">From our home in Sri Lanka to the far corners of the world. Tap a destination to explore it.</p>
+    </div>
+    <div class="wm-stage reveal reveal-d1">
+      <img class="wm-map" src={IMG + 'world.svg'} alt="" loading="lazy">
+      <svg class="wm-svg" viewBox="0 40 1010 600" preserveAspectRatio="none" role="img" aria-label="Map of Ceylon Carriers destinations">
+        <g id="wmArcs"></g>
+        <g id="wmPins"></g>
+        <g id="wmHub"></g>
+      </svg>
+      <div class="wm-card" id="wmCard" aria-live="polite"></div>
+    </div>
+    <div class="wm-legend" id="wmLegend" aria-label="Destination list"></div>
+  </div>
+</section>
+
+<!-- ============================ TRAVEL YOUR WAY ============================ -->
+<section class="audiences section-pad">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="t-label">Travel your way</span>
+      <h2 class="t-headline" style="color:#fff;margin-top:10px">Journeys built<br>around you</h2>
+      <p class="t-body">No two travellers are the same. Tell us who's going and we'll shape everything else.</p>
+    </div>
+    <div class="aud-grid">
+      <div class="acard reveal">
+        <span class="a-num">01</span>
+        <div class="a-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Group Tours</h3>
+        <p>Escorted departures with like-minded travellers. Logistics handled, friendships included.</p>
+      </div>
+      <div class="acard reveal reveal-d1">
+        <span class="a-num">02</span>
+        <div class="a-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>International Travellers</h3>
+        <p>Visiting Sri Lanka? Airport to airport, we craft the island around your pace and interests.</p>
+      </div>
+      <div class="acard reveal reveal-d2">
+        <span class="a-num">03</span>
+        <div class="a-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Honeymoons</h3>
+        <p>Private villas, candle-lit dinners, sunrise trains. Romance planned to the last detail.</p>
+      </div>
+      <div class="acard reveal reveal-d3">
+        <span class="a-num">04</span>
+        <div class="a-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+        <h3>Family Holidays</h3>
+        <p>Kid-approved adventures with grown-up comfort. Safaris, beaches and zero stress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY CCT ============================ -->
+<section class="why section-pad" id="why">
+  <div class="container why-grid">
+    <div class="why-media reveal">
+      <img id="parallaxImg" src={IMG + 'canoe-couple.jpg'} alt="Couple paddling a wooden canoe across a mountain lake at golden hour" loading="lazy" width="1000" height="1150">
+      <div class="why-since">
+        <span class="yr">'73</span>
+        <span>Trusted since<br>day one</span>
+      </div>
+    </div>
+    <div class="reveal reveal-d1">
+      <span class="t-label">Why Ceylon Carriers</span>
+      <h2 class="t-headline" style="margin-top:10px">Experience you<br>can't shortcut</h2>
+      <p class="t-body" style="margin-top:16px">Founded in 1973, Ceylon Carriers Travels has spent five decades perfecting one craft: journeys that feel effortless. We know the roads, the people and the moments worth travelling for, because we've been walking them longer than most agencies have existed.</p>
+      <div class="feat-list">
+        <div class="feat">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div><h4>50+ years on the road</h4><p>A legacy of trust built journey by journey since 1973.</p></div>
+        </div>
+        <div class="feat">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+          <div><h4>Local expertise, global reach</h4><p>Deep Sri Lanka knowledge plus trusted partners on every continent.</p></div>
+        </div>
+        <div class="feat">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <div><h4>Tailored itineraries</h4><p>Every trip is drawn around you, never off a shelf.</p></div>
+        </div>
+        <div class="feat">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h4>End-to-end support</h4><p>One WhatsApp away before, during and after you travel.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HOW IT WORKS ============================ -->
+<section class="how section-pad">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center">
+      <span class="t-label">Simple by design</span>
+      <h2 class="t-headline" style="margin-top:10px">How it works</h2>
+    </div>
+    <div class="how-steps">
+      <div class="step reveal">
+        <div class="s-dot">1</div>
+        <h3>Enquire</h3>
+        <p>Tell us where you're dreaming of. Two minutes on WhatsApp is all it takes.</p>
+      </div>
+      <div class="step reveal reveal-d1">
+        <div class="s-dot">2</div>
+        <h3>We Plan</h3>
+        <p>Our specialists craft a personal itinerary and fine-tune it with you until it's perfect.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="s-dot">3</div>
+        <h3>You Travel</h3>
+        <p>Fly out with everything arranged, with our team on call the whole way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TESTIMONIALS ============================ -->
+<!-- ⚠️ PLACEHOLDER TESTIMONIALS: sample copy only. Replace all three quotes with
+     REAL client testimonials (with written permission) before launch, or remove
+     this section. Never publish invented quotes on a live client site. -->
+<section class="testimonials section-pad">
+  <div class="container">
+    <div class="tst-wrap reveal">
+      <span class="tst-quotemark">“</span>
+      <div class="tst-track" id="tstTrack">
+        <div class="tst active">
+          <blockquote>Ceylon Carriers planned our honeymoon down to the smallest detail. Ten days across Sri Lanka and not a single thing went wrong. It felt like the whole island was expecting us.</blockquote>
+          <div class="who"><strong>Sarah & James W.</strong>Honeymoon · Sri Lanka, 10 days</div>
+        </div>
+        <div class="tst">
+          <blockquote>Our church group of 32 travelled to Velankanni with them. Flawless coordination, caring guides, and they handled every one of us like family. We're already planning the next trip.</blockquote>
+          <div class="who"><strong>Fr. Anton P.</strong>Group Pilgrimage · Velankanni & Chennai</div>
+        </div>
+        <div class="tst">
+          <blockquote>Three generations, one holiday: grandparents, kids, teenagers. Somehow they built a Portugal itinerary that kept every single one of us happy. That's a rare skill.</blockquote>
+          <div class="who"><strong>The Fernando Family</strong>Family Tour · Portugal, 9 days</div>
+        </div>
+      </div>
+      <div class="tst-dots" id="tstDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FILM BAND ============================ -->
+<section class="filmband" id="film">
+  <video class="film-video" muted loop playsinline preload="metadata" poster={BASE + 'videos/cct-journey-poster.jpg'} aria-hidden="true">
+    <source src={BASE + 'videos/cct-journey.mp4'} type="video/mp4">
+  </video>
+  <div class="film-scrim"></div>
+  <div class="container film-inner reveal">
+    <span class="t-label" style="color:var(--amber)">Fifty years of journeys</span>
+    <h2 class="film-title">The world is<br>waiting for you</h2>
+    <p class="film-sub">From the temples of Asia to the coasts of Europe and the wilds of home, we turn faraway places into journeys you never forget.</p>
+    <div class="film-ctas">
+      <button class="btn btn-teal btn-lg" data-open-modal>Start Your Journey</button>
+      <a class="btn btn-glass btn-lg" data-wa-link href="#" target="_blank" rel="noopener">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.87-9.9 9.87zm8.42-18.3A11.8 11.8 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.64a11.93 11.93 0 0 0 5.77 1.47c6.58 0 11.94-5.35 11.94-11.93 0-3.18-1.24-6.18-3.5-8.4z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>import '../scripts/home.js';</script>
+</Layout>

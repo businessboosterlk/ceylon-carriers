@@ -1,0 +1,19 @@
+# Ceylon Carriers Travels
+
+Travel company in Colombo, Sri Lanka, founded in 1973. Two services:
+1. Inbound: private tours of Sri Lanka for international visitors (destination management), with an English-speaking chauffeur guide, half-board hotels and airport transfers.
+2. Outbound: escorted holiday packages abroad for Sri Lankan travellers, with flights, hotels, visa handling and transfers in one price where listed.
+
+Office: 60/7, 1/1, Horton Place, Colombo 07, Sri Lanka
+Phone: +94 768 232406 / +94 768 232404
+WhatsApp: https://wa.me/94768232406
+Email: info@ceyloncarrierstravels.com (general), inbound@ceyloncarrierstravels.com (Sri Lanka tours), sales@ceyloncarrierstravels.com (holidays abroad)
+Facebook: https://facebook.com/ceyloncarrierstravels
+Instagram: https://instagram.com/ceyloncarrierstravels
+
+Pages:
+- Home: /
+- Sri Lanka tours for visitors: /sri-lanka-tours/
+- Holidays abroad for Sri Lankans: /holidays-abroad/
+- About: /about/
+- Contact: /contact/

@@ -1,0 +1,182 @@
+---
+// ABOUT: the trust page. The company story, the two services, how we plan,
+// the office. Founding year is 1973 and carries no caveat anywhere.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { SITE, BASE, IMG, waURL } from '../scripts/config.js';
+import { breadcrumb, siteOf } from '../scripts/seo.js';
+
+const site = siteOf(Astro.site);
+const path = 'about/';
+const schema = [breadcrumb(site, BASE, [{ name: 'About', path }])];
+const wa = waURL("Hi Ceylon Carriers! I'd like help planning a trip.");
+const mapQ = encodeURIComponent('Horton Place, Colombo 07, Sri Lanka');
+---
+<Layout
+  title="About Ceylon Carriers Travels | Since 1973"
+  description="Founded in 1973 in Colombo, Ceylon Carriers Travels plans Sri Lanka for visitors and the world for Sri Lankans. The office, the two services and the way we work."
+  path={path}
+  page="about"
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Since 1973"
+    title="Fifty years<br><em>on the road</em>"
+    sub="A Colombo travel house that plans two kinds of journey: the island for visitors and the world for Sri Lankans."
+    image="sl-train.jpg"
+    alt="The blue train winding through Sri Lanka's hill country"
+    crumb="About"
+  >
+    <div class="phero-ctas">
+      <a class="btn btn-gold btn-lg" href={wa} target="_blank" rel="noopener"><WaIcon /> WhatsApp Us</a>
+      <a class="btn btn-glass btn-lg" href="#office">Visit the office</a>
+    </div>
+  </PageHero>
+
+  <section class="intro section-pad">
+    <div class="container intro-grid">
+      <div class="reveal">
+        <span class="t-label">Who we are</span>
+        <p class="lede" style="margin-top:12px">Ceylon Carriers Travels was founded in 1973 and has planned journeys from Colombo ever since. We are a destination management company for visitors to Sri Lanka and a tour operator for Sri Lankans going abroad.</p>
+        <p class="t-body">Two very different jobs, one office at Horton Place, Colombo 07. The inbound desk knows which hotel in Ella has the view and which road to Yala is open after rain. The outbound desk knows which embassy wants the bank statement stapled and which airline still serves a proper meal to Chennai. Fifty years buys that kind of detail. It does not come from a brochure.</p>
+      </div>
+      <div class="facts reveal reveal-d1">
+        <div class="fact"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><strong>Founded 1973</strong><span>Generations of travellers, in and out of the island.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>Horton Place, Colombo 07</strong><span>A real office you can walk into, not only a number.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/><circle cx="12" cy="12" r="10"/></svg><div><strong>Two services</strong><span>Private Sri Lanka tours for visitors, escorted holidays abroad for Sri Lankans.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><strong>One WhatsApp away</strong><span>Before, during and after you travel.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" style="background:var(--grey-bg)">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="t-label">Two ways we travel</span>
+        <h2 class="t-headline" style="margin-top:10px">Into the island,<br>out into the world</h2>
+      </div>
+      <div class="two">
+        <a class="way reveal" href={BASE + 'sri-lanka-tours/'}>
+          <img src={IMG + 'sigiriya.jpg'} alt="Sigiriya rock fortress reflected in a lotus pond at golden hour" loading="lazy" width="800" height="600">
+          <div class="way-body">
+            <span class="t-label" style="color:var(--amber)">For visitors</span>
+            <h3>Sri Lanka Tours</h3>
+            <p>Private tours with your own chauffeur guide, from four days to a fortnight.</p>
+            <span class="btn btn-gold">See the tours</span>
+          </div>
+        </a>
+        <a class="way reveal reveal-d1" href={BASE + 'holidays-abroad/'}>
+          <img src={IMG + 'taj-arch.jpg'} alt="The Taj Mahal framed by a marble archway at sunrise" loading="lazy" width="800" height="600">
+          <div class="way-body">
+            <span class="t-label" style="color:var(--amber)">For Sri Lankans</span>
+            <h3>Holidays Abroad</h3>
+            <p>Escorted packages with flights, hotels, visas and transfers in one price.</p>
+            <span class="btn btn-gold">See the packages</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="t-label">What we stand for</span>
+        <h2 class="t-headline" style="margin-top:10px">Experience you<br>can't shortcut</h2>
+        <p class="t-body" style="margin-top:16px">We know the roads, the people and the moments worth travelling for, because we've been walking them longer than most agencies have existed.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat reveal">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div><h4>50+ years on the road</h4><p>A legacy of trust built journey by journey since 1973.</p></div>
+        </div>
+        <div class="feat reveal reveal-d1">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+          <div><h4>Local expertise, global reach</h4><p>Deep Sri Lanka knowledge plus trusted partners on every continent.</p></div>
+        </div>
+        <div class="feat reveal reveal-d2">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <div><h4>Tailored itineraries</h4><p>Every trip is drawn around you, never off a shelf.</p></div>
+        </div>
+        <div class="feat reveal reveal-d3">
+          <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h4>End-to-end support</h4><p>One WhatsApp away before, during and after you travel.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how section-pad">
+    <div class="container">
+      <div class="section-head reveal" style="text-align:center">
+        <span class="t-label">Simple by design</span>
+        <h2 class="t-headline" style="margin-top:10px">How we plan</h2>
+      </div>
+      <div class="how-steps">
+        <div class="step reveal">
+          <div class="s-dot">1</div>
+          <h3>Enquire</h3>
+          <p>Tell us where you're dreaming of. Two minutes on WhatsApp is all it takes.</p>
+        </div>
+        <div class="step reveal reveal-d1">
+          <div class="s-dot">2</div>
+          <h3>We Plan</h3>
+          <p>Our specialists craft a personal itinerary and fine-tune it with you until it's right.</p>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="s-dot">3</div>
+          <h3>You Travel</h3>
+          <p>Fly out with everything arranged, with our team on call the whole way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="filmband" id="film">
+    <video class="film-video" muted loop playsinline preload="metadata" poster={BASE + 'videos/cct-journey-poster.jpg'} aria-hidden="true">
+      <source src={BASE + 'videos/cct-journey.mp4'} type="video/mp4">
+    </video>
+    <div class="film-scrim"></div>
+    <div class="container film-inner reveal">
+      <span class="t-label" style="color:var(--amber)">From our own footage</span>
+      <h2 class="film-title">Half a century<br>of departures</h2>
+      <p class="film-sub">Temples, trains, coasts and cities, filmed on the journeys we plan. This is what the paperwork is for.</p>
+      <div class="film-ctas">
+        <button class="btn btn-teal btn-lg" data-open-modal>Start Your Journey</button>
+        <a class="btn btn-glass btn-lg" href={wa} target="_blank" rel="noopener"><WaIcon /> WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="office" style="background:var(--grey-bg)">
+    <div class="container office">
+      <div class="office-card reveal">
+        <span class="t-label">The office</span>
+        <h3 style="margin-top:8px">Horton Place,<br>Colombo 07</h3>
+        <address><strong>Ceylon Carriers Travels</strong><br>{SITE.address.street}<br>{SITE.address.city}, {SITE.address.country}</address>
+        <div class="row" style="margin-top:var(--s-3)"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><a href={'tel:' + SITE.phones[0].replace(/\s/g, '')}>{SITE.phones[0]}</a><br><a href={'tel:' + SITE.phones[1].replace(/\s/g, '')}>{SITE.phones[1]}</a></div></div>
+        <div class="row"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg><div><a href={'mailto:' + SITE.emails.general}>{SITE.emails.general}</a></div></div>
+        <div class="row"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><a href={wa} target="_blank" rel="noopener">WhatsApp {SITE.phones[0]}</a></div></div>
+      </div>
+      <div class="map reveal reveal-d1">
+        <iframe src={'https://www.google.com/maps?q=' + mapQ + '&output=embed'} loading="lazy" title="Map showing Horton Place, Colombo 07" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Start with a message"
+    title="Where would<br>you like to go?"
+    sub="Into the island or out into the world. Tell us which and when. We take it from there."
+    image="canoe-couple.jpg"
+    alt="A couple paddling a wooden canoe across a still lake at golden hour"
+    message="Hi Ceylon Carriers! I'd like help planning a trip. Where: ... When: ... How many of us: ..."
+  />
+</Layout>
+
+<style>
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4) var(--s-8);margin-top:var(--s-5)}
+  @media (max-width:860px){.feat-grid{grid-template-columns:1fr}}
+</style>

@@ -1,0 +1,19 @@
+{
+  "name": "ceylon-carriers-travels",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Ceylon Carriers Travels website. Astro static site on the BB stack standard.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --port 4637",
+    "build": "astro build",
+    "preview": "astro preview --port 4637",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.3.2"
+  }
+}

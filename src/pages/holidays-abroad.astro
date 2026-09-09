@@ -1,0 +1,150 @@
+---
+// HOLIDAYS ABROAD: the outbound page, written for a Sri Lankan traveller.
+// The three priced packages are client-confirmed (src/data/packages.json).
+// Everything else is "ask for a quote" on purpose: no price we cannot back.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { SITE, BASE, IMG, waURL } from '../scripts/config.js';
+import { breadcrumb, faqSchema, siteOf } from '../scripts/seo.js';
+import data from '../data/packages.json';
+
+const site = siteOf(Astro.site);
+const path = 'holidays-abroad/';
+const lkr = n => n.toLocaleString('en-US');
+
+const faqs = [
+  { q: 'What is included in the price?',
+    a: 'Each package lists its own inclusions. Velankanni and the Bhutan and Golden Triangle journey include the air ticket, accommodation, visa handling, tours and transfers. Portugal includes hotels, an English-speaking guide, entrance fees and transfers, with flights quoted separately.' },
+  { q: 'Are the prices per person?',
+    a: 'Yes. Prices are nett per person on double sharing, so a couple sharing a room pays the listed price each. Single travellers and family rooms are quoted on request.' },
+  { q: 'Do you handle the visa?',
+    a: 'Where a package lists visa, we handle the application with you as part of the price. For any other destination, ask us and we will tell you what that embassy needs before you commit to dates.' },
+  { q: 'Can we travel as our own private group?',
+    a: 'Yes. Church groups, extended families and office trips travel on their own dates with their own escort. Tell us the headcount and the month and we will price it for the group.' },
+  { q: 'When should we book?',
+    a: 'Two to three months ahead for April, August and December departures. Flights out of Colombo fill before the hotels do. The fare is the part of the price that moves.' }
+];
+const schema = [breadcrumb(site, BASE, [{ name: 'Holidays Abroad', path }]), faqSchema(faqs)];
+const ask = p => waURL(`Hi Ceylon Carriers! I'm interested in the ${p.name} package (${p.badge}, LKR ${lkr(p.price)} per person). Could you send me the itinerary and the next departure dates?`);
+const quote = d => waURL(`Hi Ceylon Carriers! I'd like a quote for a holiday to ${d.name}. Number of travellers: ... Travel month: ...`);
+const planWa = waURL("Hi Ceylon Carriers! I'm planning a holiday abroad. Could you help me with options and prices?");
+---
+<Layout
+  title="Holidays Abroad for Sri Lankans | Ceylon Carriers Travels"
+  description="Escorted holidays from Colombo with flights, hotels, visas and transfers in one price. Velankanni, Bhutan and the Golden Triangle, Portugal and more, since 1973."
+  path={path}
+  page="holidays"
+  schema={schema}
+>
+  <PageHero
+    eyebrow="For Sri Lankan travellers"
+    title="The world, with<br>your <em>paperwork done</em>"
+    sub="Group departures and private holidays from Colombo. Flights, hotels, visas and transfers in one price where listed, so all you carry is the itinerary."
+    image="taj-arch.jpg"
+    alt="The Taj Mahal framed by a marble archway at sunrise"
+    crumb="Holidays Abroad"
+  >
+    <div class="phero-ctas">
+      <a class="btn btn-gold btn-lg" href="#packages">See the packages</a>
+      <a class="btn btn-glass btn-lg" href={planWa} target="_blank" rel="noopener"><WaIcon /> WhatsApp Us</a>
+    </div>
+  </PageHero>
+
+  <section class="intro section-pad">
+    <div class="container intro-grid">
+      <div class="reveal">
+        <span class="t-label">How it works</span>
+        <p class="lede" style="margin-top:12px">Ceylon Carriers Travels has taken Sri Lankan families, church groups and friends abroad since 1973. Our escorted packages bundle the air ticket, hotels, visa handling and every transfer into one nett price per person.</p>
+        <p class="t-body">You see the number before you commit. Three journeys below are priced and ready. Everything else on this page is planned to order. We quote it within the conversation, not after a form.</p>
+      </div>
+      <div class="facts reveal reveal-d1">
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/><circle cx="12" cy="12" r="10"/></svg><div><strong>One price, one plan</strong><span>Air ticket, hotel, visa and transfers together where the package lists them.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div><strong>Escorted group departures</strong><span>Travel with an escort who has done the route before.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><div><strong>Nett prices per person</strong><span>Quoted on double sharing. Singles and family rooms on request.</span></div></div>
+        <div class="fact"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>Planned in Colombo 07</strong><span>Walk into Horton Place or do the whole thing on WhatsApp.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="packages" style="background:var(--grey-bg)">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="t-label">Priced and ready</span>
+        <h2 class="t-headline" style="margin-top:10px">Signature journeys</h2>
+        <p class="t-body" style="margin-top:16px">Three departures with the number already on them. Ask us for the next dates. Rates move with the season and the airline, so we confirm the current price when you enquire.</p>
+      </div>
+      {data.confirmed.map(p => (
+        <article class="pkg reveal" id={p.slug}>
+          <div class="pkg-media">
+            <img src={IMG + p.image} alt={p.alt} loading="lazy" width="900" height="700">
+            <span class="pk-badge">{p.badge}</span>
+          </div>
+          <div class="pkg-body">
+            <span class="pkg-route">{p.route.join(' · ')}</span>
+            <h3>{p.name}</h3>
+            <p class="t-body">{p.blurb}</p>
+            <div class="incl">{p.includes.map(i => <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>{i}</span>)}</div>
+            <div class="pkg-foot">
+              <div class="price"><small>{p.priceNote}</small><span class="amt"><em>LKR</em>{lkr(p.price)}</span></div>
+              <a class="btn btn-gold" href={ask(p)} target="_blank" rel="noopener"><WaIcon /> Ask about this trip</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="t-label">Planned to order</span>
+        <h2 class="t-headline" style="margin-top:10px">More destinations</h2>
+        <p class="t-body" style="margin-top:16px">No fixed departure, no fixed price. Tell us who is going and when. You get an itinerary and a quote built for that group.</p>
+      </div>
+      <div class="more-grid">
+        {data.more.map((d, i) => (
+          <a class={'dcard reveal' + (i % 3 ? ' reveal-d' + (i % 3) : '')} href={quote(d)} target="_blank" rel="noopener">
+            <img src={IMG + d.image} alt={d.alt} loading="lazy" width="800" height="600">
+            <div class="dcard-body">
+              <h3 class="dcard-name">{d.name}</h3>
+              <p class="dcard-line">{d.line}</p>
+              <span class="dcard-link">Ask for a quote <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="reveal" style="margin-top:var(--s-5)">
+        <span class="t-label">Also planned for our travellers</span>
+        <div class="chips">{data.alsoPlanned.map(x => <span>{x}</span>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" style="background:var(--grey-bg)">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="t-label">When Sri Lanka travels</span>
+        <h2 class="t-headline" style="margin-top:10px">Book ahead of the rush</h2>
+      </div>
+      <div class="seasons">
+        <div class="season reveal"><div class="when">April</div><h4>Avurudu holidays</h4><p>The biggest window of the year for family and group departures. Start in January or February. Flights out of Colombo fill before the hotels do.</p></div>
+        <div class="season reveal reveal-d1"><div class="when">August</div><h4>School holidays</h4><p>Peak month for family departures and the one to book earliest. Have the dates settled by June.</p></div>
+        <div class="season reveal reveal-d2"><div class="when">December</div><h4>Year-end travel</h4><p>Festive departures and honeymoons. Decide in September and you have the pick of the hotels.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faqs} eyebrow="Before you book" title="Questions travellers ask us" />
+
+  <CtaBand
+    eyebrow="Your next departure"
+    title="Tell us who's going<br>and when"
+    sub="Family, group or the two of you. Send the headcount and the month. You'll get an itinerary and a nett price back."
+    image="algarve.jpg"
+    alt="Golden cliffs and blue sea on the Algarve coast of Portugal"
+    message="Hi Ceylon Carriers! I'm planning a holiday abroad. Destination: ... Number of travellers: ... Travel month: ... Could you send me options and a price?"
+  />
+</Layout>

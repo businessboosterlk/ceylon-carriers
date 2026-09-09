@@ -1,0 +1,21 @@
+---
+// Visible FAQ. The page passes the same items to faqSchema() so the markup and
+// the schema can never disagree (the SEO foundation's truthfulness rule).
+const { items, eyebrow = 'Good to know', title = 'Questions we get asked' } = Astro.props;
+---
+<section class="faq section-pad">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="t-label">{eyebrow}</span>
+      <h2 class="t-headline" style="margin-top:10px">{title}</h2>
+    </div>
+    <div class="faq-list reveal reveal-d1">
+      {items.map((f, i) => (
+        <details open={i === 0}>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

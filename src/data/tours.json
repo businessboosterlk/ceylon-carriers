@@ -1,0 +1,210 @@
+{
+  "_source": "The nine Sri Lanka tours published on ceyloncarrierstravels.com (Shopify products.json, read 2026-09-09). Routes, highlights and inclusions are the client's own. No prices: shown as price on request until the client confirms the currency of the figures on their store.",
+  "includes": [
+    "Accommodation on half board, breakfast and dinner",
+    "Return airport transfers",
+    "Air-conditioned private vehicle with an English-speaking chauffeur guide",
+    "Entrance fees as per the programme",
+    "All tours and transfers"
+  ],
+  "tours": [
+    {
+      "slug": "wildlife-heritage",
+      "name": "Wildlife & Heritage",
+      "badge": "8D / 7N",
+      "duration": "8 days, 7 nights",
+      "route": [
+        "Sigiriya",
+        "Dambulla",
+        "Polonnaruwa",
+        "Minneriya",
+        "Kandy",
+        "Horton Plains",
+        "Yala",
+        "Bentota"
+      ],
+      "blurb": "Leopards at Yala, the elephant gathering at Minneriya and three UNESCO sites in one week, ending on the beach at Bentota.",
+      "highlights": [
+        "Climb Sigiriya rock fortress",
+        "Jeep safari in Yala, famous for leopards",
+        "Walk Horton Plains to World's End",
+        "Temple of the Tooth in Kandy"
+      ],
+      "image": "tours/wildlife-heritage.jpg",
+      "alt": "A leopard resting on a branch, looking straight at the camera"
+    },
+    {
+      "slug": "buddhist-pilgrimage",
+      "name": "Buddhist Pilgrimage",
+      "badge": "8D / 7N",
+      "duration": "8 days, 7 nights",
+      "route": [
+        "Dambulla",
+        "Sigiriya",
+        "Polonnaruwa",
+        "Anuradhapura",
+        "Mihintale",
+        "Kandy",
+        "Kelaniya",
+        "Colombo"
+      ],
+      "blurb": "Eight days through the island's sacred cities, from Mihintale where Buddhism first took root to the Temple of the Tooth in Kandy.",
+      "highlights": [
+        "Dambulla cave temple, over 150 Buddha statues",
+        "Anuradhapura, the first capital",
+        "Mihintale, birthplace of Buddhism in Sri Lanka",
+        "Kelaniya Raja Maha Viharaya"
+      ],
+      "image": "tours/buddhist-pilgrimage.jpg",
+      "alt": "Novice monks in orange robes walking down ancient stone steps"
+    },
+    {
+      "slug": "ramayana-trail",
+      "name": "Ramayana Trail",
+      "badge": "7D / 6N",
+      "duration": "7 days, 6 nights",
+      "route": [
+        "Chilaw",
+        "Ramboda",
+        "Nuwara Eliya",
+        "Ella",
+        "Colombo"
+      ],
+      "blurb": "Seven days along the sites of the Ramayana, from Munneswaram where Rama prayed to the Seetha Amman temple in Nuwara Eliya.",
+      "highlights": [
+        "Munneswaram and Manavari temples",
+        "Ramboda Hanuman temple and Ravana Falls",
+        "Seetha Amman temple, Nuwara Eliya",
+        "Ravana Cave and Ashok Vatika"
+      ],
+      "image": "tours/ramayana-trail.jpg",
+      "alt": "Daylight through the mouth of Ravana Cave near Ella"
+    },
+    {
+      "slug": "ayurveda-wellness",
+      "name": "Ayurveda Wellness Retreat",
+      "badge": "14D / 13N",
+      "duration": "14 days, 13 nights",
+      "route": [
+        "One retreat, two weeks"
+      ],
+      "blurb": "Two weeks of Ayurvedic treatment with resident physicians and therapists, daily yoga and every meal included.",
+      "highlights": [
+        "On-site physicians and therapists",
+        "Daily yoga",
+        "Full board with snacks and beverages",
+        "Return airport transfers"
+      ],
+      "image": "tours/ayurveda-wellness.jpg",
+      "alt": "A hand holding fresh purple flowers"
+    },
+    {
+      "slug": "honeymoon",
+      "name": "Honeymoon",
+      "badge": "9D / 8N",
+      "duration": "9 days, 8 nights",
+      "route": [
+        "Planned around the two of you"
+      ],
+      "blurb": "Nine nights for two, drawn around you: a private car, half-board hotels and the island's quiet corners.",
+      "highlights": [
+        "Private vehicle with chauffeur guide",
+        "Half board hotels, breakfast and dinner",
+        "Return airport transfers",
+        "Entrance fees as per the programme"
+      ],
+      "image": "tours/honeymoon.jpg",
+      "alt": "A couple embracing on the beach at sunset"
+    },
+    {
+      "slug": "cultural",
+      "name": "Cultural Package",
+      "badge": "Sigiriya & Kandy",
+      "duration": "Sigiriya and Kandy",
+      "route": [
+        "Sigiriya",
+        "Kandy"
+      ],
+      "blurb": "The two places every first visit needs: the rock fortress at Sigiriya and the Temple of the Tooth in Kandy.",
+      "highlights": [
+        "Sigiriya rock fortress",
+        "Temple of the Tooth, Kandy",
+        "Private vehicle with chauffeur guide",
+        "Return airport transfers"
+      ],
+      "image": "tours/cultural.jpg",
+      "alt": "Sigiriya rock rising above the forest at sunset"
+    },
+    {
+      "slug": "ten-days",
+      "name": "The Full Circuit",
+      "badge": "10D / 9N",
+      "duration": "10 days, 9 nights",
+      "route": [
+        "Negombo",
+        "Kandy",
+        "Polonnaruwa",
+        "Sigiriya",
+        "Dambulla",
+        "Nuwara Eliya",
+        "Ella",
+        "Yala",
+        "Galle",
+        "Colombo"
+      ],
+      "blurb": "The whole island in ten days: the cultural triangle, tea country by train, a Yala safari and the Galle coast.",
+      "highlights": [
+        "Cultural triangle in full",
+        "Nuwara Eliya and the train to Ella",
+        "Yala National Park safari",
+        "Galle Fort"
+      ],
+      "image": "tours/ten-days.jpg",
+      "alt": "The Vatadage at Polonnaruwa with its seated Buddha"
+    },
+    {
+      "slug": "seven-days",
+      "name": "Best of Sri Lanka",
+      "badge": "7D / 6N",
+      "duration": "7 days, 6 nights",
+      "route": [
+        "Kandy",
+        "Ella",
+        "Yala",
+        "Galle",
+        "Colombo"
+      ],
+      "blurb": "Kandy, the train ride to Ella, a leopard safari at Yala and Galle Fort. Built for a first visit.",
+      "highlights": [
+        "Kandy to Ella train ride",
+        "Leopard safari at Yala",
+        "Galle Fort walking tour",
+        "Add whale watching in Mirissa, November to April"
+      ],
+      "image": "tours/seven-days.jpg",
+      "alt": "Diyaluma Falls dropping through green hills near Ella"
+    },
+    {
+      "slug": "four-days",
+      "name": "Short Stay",
+      "badge": "4D / 3N",
+      "duration": "4 days, 3 nights",
+      "route": [
+        "Negombo",
+        "Kandy",
+        "Bentota",
+        "Colombo"
+      ],
+      "blurb": "A first taste in four days: Negombo's lagoon, the Temple of the Tooth and a Madu River boat ride from Bentota.",
+      "highlights": [
+        "Negombo's fishing villages and lagoon",
+        "Temple of the Tooth, Kandy",
+        "Bentota beach and the Madu River",
+        "Colombo city tour"
+      ],
+      "image": "tours/four-days.jpg",
+      "alt": "The Temple of the Tooth in Kandy under a blue sky"
+    }
+  ],
+  "_images": "Card images are the client's own product images from ceyloncarrierstravels.com (downloaded 2026-09-09, converted to 1000px JPEG). One per tour, the same picture their store uses for that tour."
+}

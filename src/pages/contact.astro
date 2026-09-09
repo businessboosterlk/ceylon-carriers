@@ -1,0 +1,155 @@
+---
+// CONTACT: every real channel, the right email for each kind of enquiry, the
+// office on a map, and a message form that follows the BB booking law: name
+// and number required, email optional, a live summary, then WhatsApp.
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { SITE, BASE, IMG, waURL } from '../scripts/config.js';
+import { breadcrumb, siteOf } from '../scripts/seo.js';
+
+const site = siteOf(Astro.site);
+const path = 'contact/';
+const schema = [breadcrumb(site, BASE, [{ name: 'Contact', path }])];
+const wa = waURL("Hi Ceylon Carriers! I'd like help planning a trip.");
+const tel = n => 'tel:' + n.replace(/\s/g, '');
+const mapQ = encodeURIComponent('Horton Place, Colombo 07, Sri Lanka');
+---
+<Layout
+  title="Contact Ceylon Carriers Travels | Colombo 07"
+  description="WhatsApp +94 768 232406, call, email or visit us at Horton Place, Colombo 07. Tell us your dates and we come back with a plan, not a brochure."
+  path={path}
+  page="contact"
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Talk to us"
+    title="Two minutes on<br>WhatsApp is <em>all it takes</em>"
+    sub="Or call, email or walk into the office at Horton Place. Every enquiry is answered by a person who plans trips, not a bot."
+    image="south-coast.jpg"
+    alt="Stilt fisherman at sunset on Sri Lanka's southern coast"
+    crumb="Contact"
+  >
+    <div class="phero-ctas">
+      <a class="btn btn-gold btn-lg" href={wa} target="_blank" rel="noopener"><WaIcon /> WhatsApp {SITE.phones[0]}</a>
+      <a class="btn btn-glass btn-lg" href={tel(SITE.phones[0])}>Call us</a>
+    </div>
+  </PageHero>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="ccard wa reveal">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.84 9.84 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.87-9.9 9.87zm8.42-18.3A11.8 11.8 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.64a11.93 11.93 0 0 0 5.77 1.47c6.58 0 11.94-5.35 11.94-11.93 0-3.18-1.24-6.18-3.5-8.4z"/></svg></div>
+          <span class="who">Fastest</span>
+          <h3>WhatsApp</h3>
+          <a class="big" href={wa} target="_blank" rel="noopener">{SITE.phones[0]}</a>
+          <p>Send your dates, the number of travellers and where you want to go. That is enough to start.</p>
+          <a class="btn btn-gold" href={wa} target="_blank" rel="noopener"><WaIcon /> Open WhatsApp</a>
+        </div>
+        <div class="ccard reveal reveal-d1">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <span class="who">Talk to a planner</span>
+          <h3>Call the office</h3>
+          <a class="big" href={tel(SITE.phones[0])}>{SITE.phones[0]}</a>
+          <a class="big" href={tel(SITE.phones[1])}>{SITE.phones[1]}</a>
+          <p>Two lines into the Colombo office.</p>
+          <a class="btn btn-outline" href={tel(SITE.phones[0])}>Call now</a>
+        </div>
+        <div class="ccard reveal reveal-d2">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <span class="who">The right inbox</span>
+          <h3>Email</h3>
+          <p><strong>Visiting Sri Lanka</strong><br><a href={'mailto:' + SITE.emails.inbound}>{SITE.emails.inbound}</a></p>
+          <p><strong>Holidays abroad</strong><br><a href={'mailto:' + SITE.emails.holidays}>{SITE.emails.holidays}</a></p>
+          <p><strong>Anything else</strong><br><a href={'mailto:' + SITE.emails.general}>{SITE.emails.general}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" style="background:var(--grey-bg)">
+    <div class="container form-grid">
+      <div class="reveal">
+        <span class="t-label">Send a message</span>
+        <h2 class="t-headline" style="margin-top:10px">Tell us the trip,<br>we'll do the rest</h2>
+        <p class="t-body" style="margin-top:16px">Name and number are enough. The message opens in WhatsApp with everything filled in, so you can add anything before you press send.</p>
+        <div class="office-card" style="margin-top:var(--s-5)">
+          <span class="t-label">The office</span>
+          <address style="margin-top:8px"><strong>Ceylon Carriers Travels</strong><br>{SITE.address.street}<br>{SITE.address.city}, {SITE.address.country}</address>
+          <div class="map" style="margin-top:var(--s-3);aspect-ratio:16/10">
+            <iframe src={'https://www.google.com/maps?q=' + mapQ + '&output=embed'} loading="lazy" title="Map showing Horton Place, Colombo 07" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <form class="cform reveal reveal-d1" id="cform" novalidate>
+        <span class="t-label">Your message</span>
+        <div class="m-fields">
+          <div class="field" id="wName">
+            <label for="cName">Full name</label>
+            <input type="text" id="cName" placeholder="Your name" autocomplete="name">
+            <span class="err-msg">Please enter your name</span>
+          </div>
+          <div class="row2">
+            <div class="field" id="wPhone">
+              <label for="cPhone">Phone / WhatsApp</label>
+              <input type="tel" id="cPhone" placeholder="+94 7X XXX XXXX" autocomplete="tel">
+              <span class="err-msg">Please enter your phone number</span>
+            </div>
+            <div class="field" id="wEmail">
+              <label for="cEmail">Email (optional)</label>
+              <input type="email" id="cEmail" placeholder="you@email.com" autocomplete="email">
+              <span class="err-msg">That email does not look right</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cAbout">What is it about?</label>
+            <select id="cAbout">
+              <option>Visiting Sri Lanka</option>
+              <option>A holiday abroad</option>
+              <option>A group or pilgrimage</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cMsg">Your message</label>
+            <textarea id="cMsg" placeholder="Dates, number of travellers, where you'd like to go"></textarea>
+          </div>
+        </div>
+        <div class="summary" id="csum" aria-live="polite">Your message will appear here as you type.</div>
+        <button class="btn btn-teal btn-lg" type="submit"><WaIcon /> Send via WhatsApp</button>
+        <p class="fine" id="cdone">Opens WhatsApp with your message ready to send.</p>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { waURL } from '../scripts/config.js';
+  const form = document.getElementById('cform');
+  if (form) {
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const val = id => $(id).value.trim();
+    const sum = $('csum');
+    function summary() {
+      const n = val('cName'), p = val('cPhone'), a = $('cAbout').value, m = val('cMsg');
+      if (!n && !p && !m) { sum.innerHTML = 'Your message will appear here as you type.'; return; }
+      sum.innerHTML = '<strong>' + esc(n || 'Your name') + '</strong> · ' + esc(p || 'your number') + ' · ' + esc(a) + (m ? '<br>' + esc(m) : '');
+    }
+    ['cName', 'cPhone', 'cEmail', 'cAbout', 'cMsg'].forEach(id => $(id).addEventListener('input', summary));
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const n = val('cName'), p = val('cPhone'), em = val('cEmail'), a = $('cAbout').value, m = val('cMsg');
+      const emailOK = !em || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+      $('wName').classList.toggle('err', !n);
+      $('wPhone').classList.toggle('err', !p);
+      $('wEmail').classList.toggle('err', !emailOK);
+      if (!n || !p || !emailOK) return;
+      const msg = 'Hi Ceylon Carriers!\n• About: ' + a + '\n• Name: ' + n + '\n• Phone: ' + p +
+        '\n• Email: ' + (em || 'not given') + (m ? '\n• Message: ' + m : '') + '\n• Sent from: contact page';
+      window.open(waURL(msg), '_blank', 'noopener');
+      $('cdone').textContent = 'WhatsApp is opening with your message. If it did not, tap the button again.';
+    });
+  }
+</script>

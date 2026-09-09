@@ -1,0 +1,20 @@
+---
+// Closing action band. Every inner page ends in one, so nobody scrolls back up
+// to convert. The WhatsApp message names what the page was about.
+import { IMG, waURL } from '../scripts/config.js';
+import WaIcon from './WaIcon.astro';
+const { eyebrow, title, sub, image, alt = '', message } = Astro.props;
+---
+<section class="cta-band">
+  <img src={IMG + image} alt={alt} loading="lazy" width="1600" height="900">
+  <div class="scrim"></div>
+  <div class="container cta-inner reveal">
+    <span class="t-label" style="color:var(--amber)">{eyebrow}</span>
+    <h2 class="film-title" set:html={title} />
+    <p class="film-sub">{sub}</p>
+    <div class="film-ctas">
+      <a class="btn btn-gold btn-lg" href={waURL(message)} target="_blank" rel="noopener"><WaIcon /> WhatsApp Us</a>
+      <button class="btn btn-glass btn-lg" data-open-modal>Plan My Trip</button>
+    </div>
+  </div>
+</section>

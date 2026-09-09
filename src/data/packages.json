@@ -1,0 +1,53 @@
+{
+  "_source": "Prices and inclusions are client-provided (BRAIN.md section 4, confirmed packages in use). Do not add a price here that the client has not stated.",
+  "confirmed": [
+    {
+      "slug": "velankanni",
+      "name": "Velankanni & Chennai",
+      "badge": "5D / 4N",
+      "duration": "5 days, 4 nights",
+      "route": ["Chennai", "Velankanni"],
+      "blurb": "A pilgrimage to the Basilica of Our Lady of Good Health at Velankanni, with time in Chennai on the way. The air ticket, hotel, visa and every transfer are in the price, so the group travels as one and nobody queues twice.",
+      "price": 225000,
+      "priceNote": "Nett per person, double sharing",
+      "includes": ["Air ticket", "Accommodation", "Visa", "Tours and transfers"],
+      "image": "velankanni-basilica.jpg",
+      "alt": "The white basilica at Velankanni against a blue sky"
+    },
+    {
+      "slug": "bhutan-golden-triangle",
+      "name": "Bhutan & the Golden Triangle",
+      "badge": "9D / 8N",
+      "duration": "9 days, 8 nights",
+      "route": ["Delhi", "Agra", "Jaipur", "Thimphu"],
+      "blurb": "Delhi, Agra and Jaipur first, then up into Bhutan's Himalayan valleys. Two countries and two visas on one escorted journey, with the Taj Mahal and the cliffside monasteries both on the list.",
+      "price": 899000,
+      "priceNote": "Per person",
+      "includes": ["Air ticket", "Accommodation", "Visa", "Tours and transfers"],
+      "image": "tigers-nest.jpg",
+      "alt": "Tiger's Nest monastery on a cliff face in Bhutan"
+    },
+    {
+      "slug": "portugal",
+      "name": "Portugal",
+      "badge": "9D / 8N",
+      "duration": "9 days, 8 nights",
+      "route": ["Porto", "Coimbra", "Óbidos", "Tomar", "Lisbon"],
+      "blurb": "Porto to Lisbon by road with an English-speaking guide, stopping at Coimbra, the walled town of Óbidos and the Templar castle at Tomar. Hotels, entrance fees and every transfer are included. Flights are quoted separately. Ask us about the Schengen visa.",
+      "price": 789000,
+      "priceNote": "Nett per person, double sharing",
+      "includes": ["Accommodation", "Tours and transfers", "Entrance fees", "English-speaking guide"],
+      "image": "lisbon-tram.jpg",
+      "alt": "Classic yellow tram climbing a hillside street in Lisbon"
+    }
+  ],
+  "more": [
+    { "name": "The Maldives", "line": "Overwater villas on turquoise lagoons", "image": "maldives.jpg", "alt": "Overwater villas on a turquoise Maldives lagoon" },
+    { "name": "Golden Triangle, India", "line": "Delhi, Jaipur and Agra with the Taj Mahal", "image": "taj-arch.jpg", "alt": "The Taj Mahal framed by a marble archway at sunrise" },
+    { "name": "Bali", "line": "Island temples and emerald rice terraces", "image": "bali.jpg", "alt": "Rice terraces and temple gate at sunrise in Bali" },
+    { "name": "Kenya Safari", "line": "The Masai Mara and the big five", "image": "africa.jpg", "alt": "Elephants on the golden African savannah at sunset" },
+    { "name": "Turkey", "line": "Hot-air balloons over Cappadocia", "image": "turkey.jpg", "alt": "Hot-air balloons over the rock valleys of Cappadocia" },
+    { "name": "Japan", "line": "Snow temples and cherry blossom", "image": "japan.jpg", "alt": "A temple in Japan with cherry blossom" }
+  ],
+  "alsoPlanned": ["Malaysia", "South Korea", "Cambodia and Thailand", "Bodhgaya", "Singapore, Penang and Phuket by cruise"]
+}
