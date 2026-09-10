@@ -72,10 +72,19 @@ for (const path of PAGES) {
     const logo = q('.nav-logo');
     // the hero headline: .phero-title on inner pages, .hero-title on the home page
     const title = q('.phero-title') || q('.hero-title');
+    // EVERY full-bleed band must sit hard left too, not just the hero. Added
+    // 2026-09-10 after Thulaib found the closing bands centred: they share the
+    // hero's flex trap and the check was only looking at the hero.
+    const bands = [...document.querySelectorAll('.cta-inner, .film-inner')].map(el => {
+      const h = el.querySelector('h1, h2, .film-title, .phero-title');
+      return { name: '.' + String(el.className).split(' ').filter(c => c !== 'container' && c !== 'reveal')[0],
+               left: h ? Math.round(h.getBoundingClientRect().left) : null,
+               text: (h ? h.textContent : '').trim().slice(0, 34) };
+    }).filter(b => b.left !== null);
     const centred = [...document.querySelectorAll('.section-head, .phero-inner, .hero-copy, h1, h2')]
       .filter(e => getComputedStyle(e).textAlign === 'center')
       .map(e => e.tagName + '.' + String(e.className).slice(0, 30));
-    return { logoLeft: left(logo), titleLeft: left(title), centred,
+    return { logoLeft: left(logo), titleLeft: left(title), centred, bands,
              hasTitle: !!title, hasLogo: !!logo };
   });
 
@@ -128,11 +137,16 @@ for (const path of PAGES) {
     fails.push(`${name}: hero headline starts at ${r.titleLeft}px but the brand mark is at ${r.logoLeft}px. The hero copy must sit hard left, level with the brand.`);
   } else if (r.centred.length) {
     fails.push(`${name}: centred heading block(s): ${r.centred.join(', ')}`);
+  } else if (r.bands.some(b => b.left !== r.logoLeft)) {
+    for (const b of r.bands.filter(b => b.left !== r.logoLeft)) {
+      fails.push(`${name}: the "${b.text}" band (${b.name}) starts at ${b.left}px but the brand mark is at ${r.logoLeft}px. `
+        + `Full-bleed bands sit hard left, same as the hero.`);
+    }
   } else if (type.length) {
     // already recorded above
   } else {
     pass++;
-    console.log(`  PASS  ${name.padEnd(20)} hero at ${r.titleLeft}px, nothing centred, no glyph collisions`);
+    console.log(`  PASS  ${name.padEnd(20)} hero + ${r.bands.length} band(s) at ${r.titleLeft}px, nothing centred, no glyph collisions`);
   }
 }
 

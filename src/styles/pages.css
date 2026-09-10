@@ -123,8 +123,20 @@ main{display:block}
 /* ---------- CTA band: photo, one line, two actions ---------- */
 .cta-band{position:relative;overflow:hidden;background:var(--black);color:#fff;min-height:420px;display:flex;align-items:center}
 .cta-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cta-band .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,12,.88) 0%,rgba(6,10,12,.6) 50%,rgba(6,10,12,.3) 100%)}
-.cta-inner{position:relative;z-index:2;max-width:620px;padding-block:var(--s-10)}
+.cta-band .scrim{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(6,10,12,.92) 0%,rgba(6,10,12,.64) 52%,rgba(6,10,12,.26) 100%),
+  linear-gradient(180deg,rgba(13,13,13,0) 52%,rgba(13,13,13,.72) 84%,var(--black) 100%)}
+/* The second gradient dissolves the photograph into the exact footer colour, so
+   the band and the footer read as ONE dark section instead of two stacked
+   pictures with a seam between them. The footer's own photograph was removed
+   for the same reason. */
+.cta-band .container{max-width:1600px;width:100%}
+/* Same flex trap as the hero (2026-09-10, second time): .cta-band is
+   display:flex, so a shrink-to-fit child with margin:0 auto gets CENTRED. The
+   container now fills the line and the 620px measure moves onto the children,
+   so the copy sits hard left with the brand. */
+.cta-inner{position:relative;z-index:2;width:100%;padding-block:var(--s-10)}
+.cta-inner>*{max-width:620px}
 .cta-inner .film-title{font-size:clamp(34px,4.6vw,60px)}
 
 /* ---------- About ---------- */
@@ -283,3 +295,20 @@ img.logo-mark{border-radius:0;box-shadow:none;object-fit:contain;
    Never set a display heading below 1.05, which is what .t-headline already uses, so the
    whole site is consistent and every heading keeps real clearance. scripts/check-align.mjs fails the build if any
    heading's rendered glyphs overlap the line beneath. */
+
+/* The film band on the home page ends against the footer too, so it gets the
+   same dissolve. */
+.filmband .film-scrim{background:
+  linear-gradient(90deg,rgba(6,10,12,.88) 0%,rgba(6,10,12,.62) 46%,rgba(6,10,12,.3) 100%),
+  linear-gradient(180deg,rgba(13,13,13,0) 62%,rgba(13,13,13,.7) 88%,var(--black) 100%)}
+@media(max-width:768px){
+  .filmband .film-scrim{background:
+    linear-gradient(180deg,rgba(6,10,12,.5) 0%,rgba(6,10,12,.55) 34%,rgba(13,13,13,.9) 78%,var(--black) 100%)}
+}
+
+/* The film band is the THIRD element caught by the flex trap (2026-09-10): it is
+   display:flex and .film-inner is a shrink-to-fit child with margin:0 auto, so
+   it was centred at 456px while the brand sat at 24px. Same fix: the container
+   fills the line, the measure moves onto the children. */
+.filmband .film-inner{width:100%;max-width:1600px;margin-inline:0}
+.filmband .film-inner>*{max-width:640px}
