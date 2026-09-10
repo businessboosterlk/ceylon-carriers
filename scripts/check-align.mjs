@@ -7,13 +7,18 @@
 // flex item and `margin:0 auto` centred it. Measured 210px of left margin on a
 // 1265px viewport. A rule in a document did not stop it. This check does.
 //
-// TRAP, found 2026-09-10: this Mac has Anton INSTALLED as a system font, CI does
-// not. So the same check measured different glyphs in the two places and the
-// numbers disagreed (t-headline needed 1.042 here, 1.087 there). Blocking the
-// webfont locally does not reproduce it, because the local install still wins.
-// That is why every failure now prints the font it measured, and why the section
-// headings are set above the FALLBACK's requirement rather than Anton's: every
-// visitor sees the fallback for a moment before the webfont arrives.
+// TRAP, found and then CORRECTED 2026-09-10. The check passed on this Mac and
+// failed in CI with different numbers (t-headline needed 1.042 here, 1.087
+// there). The first theory was "CI does not have Anton". That was WRONG. It was
+// a RACE: the measurement ran before the webfont finished loading, and CI's
+// network is slower than a warm local cache. Adding `await document.fonts.ready`
+// made both environments agree, and CI now reports Anton like this Mac does.
+//
+// The numbers it took mid-race were still worth acting on, because they were the
+// FALLBACK font's metrics, and with font-display:swap every visitor really does
+// see that fallback for a moment. So the section headings keep a 1.12 floor,
+// above what the fallback needs, for that reason and not the original wrong one.
+// Every failure prints the font it measured so this stays diagnosable.
 //
 // It asserts, on every built page, that the hero headline starts at exactly the
 // same x as the brand mark in the nav, and that no heading block is centred.
