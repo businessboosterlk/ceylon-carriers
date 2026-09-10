@@ -43,7 +43,7 @@ every URL in dev and preview includes it. See "Moving to the real domain" below.
 | `src/data/tours.json` | The nine Sri Lanka tours: routes, highlights, inclusions, images. **This is the CMS swap point.** If you give the client a way to edit tours, feed this shape. |
 | `src/data/packages.json` | The three priced packages abroad and the "ask for a quote" destinations. Same idea. |
 | `src/data/team.json` | The six people on the About page and the three history milestones. Every name, role, photo, email and number came from the client's own website. Removing someone is deleting one block. |
-| `scripts/check-align.mjs` | Loads every built page in a real browser and fails if the hero headline is not hard left, level with the brand mark. It also fails on any centred heading block. Runs in CI before the deploy. |
+| `scripts/check-align.mjs` | Loads every built page in a real browser. Fails if the hero headline is not hard left level with the brand mark, if any heading block is centred, or if a heading's glyphs overlap the line beneath it. Runs in CI before the deploy. |
 | `src/styles/global.css` | The original stylesheet, extracted byte for byte from the single-file build. Owns the home page and the shared components. |
 | `src/styles/pages.css` | Everything added for the inner pages. Builds on the tokens in `global.css`. |
 | `src/scripts/site.js` | Behaviour shared by every page: nav, scroll reveal, count-up, WhatsApp links, enquiry modal, film band. Every block guards for elements that only exist on some pages. |
@@ -141,6 +141,11 @@ entry follows. Then:
   margins centre it. Keep the `width:100%` on `.phero .container`.
 - **The logo is the client's own file**, `public/images/cct-logo.png`, cut out of
   their own lockup with a transparent background. Never redraw it.
+- **Never set a display heading below `line-height:1.05`.** The display face is
+  Anton, set in caps. Its comma and semicolon descend, and the glyphs need a
+  line-height ratio of 1.013 to clear the line beneath. Measured, not guessed:
+  ink height 101.3px in a 100px font. A comma once landed on the word below
+  because the hero was set to 0.94. The check catches this.
 - **Any image sized with `width:100%` needs `height:auto`.** The global
   stylesheet sets `max-width` but not `height`, so an `<img>` carrying a
   `height` attribute will otherwise stretch to it. That happened once and
@@ -159,8 +164,9 @@ entry follows. Then:
   asset, no placeholder phone number.
 - Preview on desktop and a 375px phone: no horizontal overflow, no console
   errors, every WhatsApp link carries +94 768 232406.
-- Left-align check: 5 of 5 pages, hero headline and brand mark both at 24px.
-  Proven both ways, it reports 275px against a deliberately broken build.
+- Layout check: 5 of 5 pages. Hero headline and brand mark both at 24px, nothing
+  centred, no heading glyph overlapping the line below. Proven both ways: it
+  reports 275px of indent and 7.3px of glyph overlap against broken builds.
 - Every archive and team photograph renders at its true aspect ratio.
 
 ## Contacts

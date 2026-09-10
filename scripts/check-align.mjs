@@ -9,6 +9,14 @@
 //
 // It asserts, on every built page, that the hero headline starts at exactly the
 // same x as the brand mark in the nav, and that no heading block is centred.
+//
+// SECOND CHECK, added 2026-09-10 after Thulaib found the comma in "SRI LANKA,"
+// sitting on the word below. Uppercase Anton needs a line-height RATIO of 1.013
+// to clear its own comma; the hero was set to 0.94, which overlapped by 7.3px at
+// a 100px font. This measures the glyphs actually painted (text-transform
+// included, which an earlier pass got wrong by measuring the lowercase source)
+// and fails if any heading's ink is taller than its line box, or if the
+// clearance is too thin to trust.
 // Playwright: use the copy already on Thulaib's Mac when it is there, otherwise
 // the devDependency (which is what CI installs). Either way the check runs.
 let chromium;
@@ -58,21 +66,60 @@ for (const path of PAGES) {
              hasTitle: !!title, hasLogo: !!logo };
   });
 
+  // --- TYPE CLEARANCE: do any glyphs land on the line beneath? ---
+  const type = await page.evaluate(() => {
+    const cv = document.createElement('canvas').getContext('2d');
+    const bad = [];
+    for (const el of document.querySelectorAll('h1, h2, h3, .phero-title, .film-title, .t-display')) {
+      const cs = getComputedStyle(el);
+      const fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight);
+      if (!fs || !lh || !isFinite(lh)) continue;
+      // only matters when the element actually wraps to more than one line
+      const lines = Math.round(el.getBoundingClientRect().height / lh);
+      if (lines < 2) continue;
+      let txt = el.textContent.trim();
+      if (cs.textTransform === 'uppercase') txt = txt.toUpperCase();
+      else if (cs.textTransform === 'lowercase') txt = txt.toLowerCase();
+      if (!txt) continue;
+      cv.font = `${cs.fontStyle} ${cs.fontWeight} ${fs}px ${cs.fontFamily}`;
+      const m = cv.measureText(txt);
+      const ink = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+      const clearance = lh - ink;
+      // demand real margin, not a hairline: 2% of the font size
+      if (clearance < fs * 0.02) {
+        bad.push({ sel: el.className ? '.' + String(el.className).split(' ')[0] : el.tagName,
+                   text: txt.slice(0, 40), fontSize: +fs.toFixed(1),
+                   lineHeight: +lh.toFixed(1), ink: +ink.toFixed(1),
+                   clearance: +clearance.toFixed(1), lines });
+      }
+    }
+    return bad;
+  });
+
   const name = path || '(home)';
+  if (type.length) {
+    for (const t of type) {
+      fails.push(`${name}: "${t.text}" (${t.sel}) has ${t.clearance}px of clearance across ${t.lines} lines. `
+        + `Its glyphs are ${t.ink}px tall in a ${t.lineHeight}px line box, so a descender lands on the line below. `
+        + `Raise line-height (${(t.lineHeight / t.fontSize).toFixed(3)} now, needs about ${((t.ink / t.fontSize) + 0.02).toFixed(3)}).`);
+    }
+  }
   if (!r.hasTitle || !r.hasLogo) { fails.push(`${name}: no hero title or no nav logo found`); continue; }
   if (r.titleLeft !== r.logoLeft) {
     fails.push(`${name}: hero headline starts at ${r.titleLeft}px but the brand mark is at ${r.logoLeft}px. The hero copy must sit hard left, level with the brand.`);
   } else if (r.centred.length) {
     fails.push(`${name}: centred heading block(s): ${r.centred.join(', ')}`);
+  } else if (type.length) {
+    // already recorded above
   } else {
     pass++;
-    console.log(`  PASS  ${name.padEnd(20)} hero headline and brand both at ${r.titleLeft}px`);
+    console.log(`  PASS  ${name.padEnd(20)} hero at ${r.titleLeft}px, nothing centred, no glyph collisions`);
   }
 }
 
 await browser.close();
 server.close();
 
-console.log(`\nLEFT-ALIGN CHECK: ${pass} of ${PAGES.length} pages pass`);
+console.log(`\nLAYOUT CHECK (alignment + type clearance): ${pass} of ${PAGES.length} pages pass`);
 if (fails.length) { console.error('\nFAIL:'); fails.forEach(f => console.error('  ' + f)); process.exit(1); }
 process.exit(0);
