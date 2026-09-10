@@ -8,22 +8,31 @@
 .skip:focus{left:10px}
 .nav-links a.on::after{width:100%}
 main{display:block}
-.section-head.center{text-align:center;max-width:680px;margin-inline:auto}
-.section-head.center .t-body{margin-inline:auto}
+/* LEFT-ALIGN LAW (Thulaib, 2026-09-10): copy sits hard left on every page.
+   Never centre a heading block and never centre the hero into the content
+   column. The hero uses the full-width container, the same as the home page. */
+.section-head.center{text-align:left;max-width:none;margin-inline:0}
+.section-head.center .t-body{margin-inline:0}
+.section-head .t-body{max-width:66ch}
 .t-body a{color:var(--teal);font-weight:700}
 
 /* ---------- Page hero: compact, photographic, ends in the content ---------- */
 .phero{position:relative;min-height:64vh;min-height:64svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black);color:#fff;padding:150px 0 var(--s-8)}
 .phero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:kenburns 12s var(--ease-smooth) forwards}
 .phero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,12,.5) 0%,rgba(6,10,12,.18) 38%,rgba(6,10,12,.88) 100%)}
+.phero .container{max-width:1600px;width:100%}
+/* width:100% is load-bearing. .phero is display:flex, so without it the
+   container is a shrink-to-fit flex item and `margin:0 auto` then CENTRES it,
+   which is exactly the indent Thulaib rejected on 2026-09-10. Measured before
+   the fix: container margin-left 210px on a 1265px viewport. After: 0. */
 .phero-inner{position:relative;z-index:2}
 .crumbs{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:var(--s-3)}
 .crumbs a:hover{color:#fff}
 .crumbs span{color:rgba(255,255,255,.45)}
 .phero .hero-eyebrow{margin-bottom:var(--s-2)}
-.phero-title{font-family:var(--font-display);font-size:clamp(46px,7vw,100px);line-height:.94;letter-spacing:.005em;text-transform:uppercase;max-width:13ch;text-shadow:0 8px 40px rgba(0,0,0,.35)}
+.phero-title{font-family:var(--font-display);font-size:clamp(46px,7vw,100px);line-height:.94;letter-spacing:.005em;text-transform:uppercase;max-width:18ch;text-shadow:0 8px 40px rgba(0,0,0,.35)}
 .phero-title em{font-style:normal;color:var(--amber)}
-.phero-sub{margin-top:var(--s-3);max-width:54ch;color:rgba(255,255,255,.86);font-size:clamp(16px,1.5vw,19px);font-weight:500;line-height:1.6}
+.phero-sub{margin-top:var(--s-3);max-width:60ch;color:rgba(255,255,255,.86);font-size:clamp(16px,1.5vw,19px);font-weight:500;line-height:1.6}
 .phero-ctas{display:flex;gap:var(--s-2);flex-wrap:wrap;margin-top:var(--s-4)}
 .phero .hero-copy>*{animation:slideTextUp .8s var(--ease-decelerate) both}
 .phero .hero-copy>*:nth-child(1){animation-delay:.05s}
@@ -165,9 +174,9 @@ main{display:block}
 .cform .fine{font-size:12.5px;color:var(--text-muted);margin-top:12px;text-align:center}
 
 /* ---------- 404 ---------- */
-.lost{min-height:80vh;display:grid;place-items:center;text-align:center;padding:160px 0 var(--s-10);background:var(--grey-bg)}
+.lost{min-height:80vh;display:flex;align-items:center;padding:160px 0 var(--s-10);background:var(--grey-bg)}
 .lost h1{font-family:var(--font-display);font-size:clamp(60px,12vw,160px);line-height:.9;text-transform:uppercase;color:var(--teal)}
-.lost p{margin:var(--s-3) auto var(--s-4);max-width:40ch;color:var(--text-secondary)}
+.lost p{margin:var(--s-3) 0 var(--s-4);max-width:44ch;color:var(--text-secondary)}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1080px){
@@ -188,4 +197,71 @@ main{display:block}
   .pkg-foot .btn{width:100%}
   .cta-band{min-height:360px}
   .cta-inner .film-ctas .btn{flex:1 1 100%;justify-content:center}
+}
+
+/* ==========================================================================
+   LEGACY + TEAM (About page, added 2026-09-10)
+   NOTE: every img here needs height:auto. An <img> that carries a height
+   ATTRIBUTE and gets width:100% from CSS keeps that attribute as its used
+   height and the picture stretches. global.css sets max-width but not height.
+   Real people and real archive photographs from the client's own records.
+   Never place a face here that the client has not published themselves.
+   ========================================================================== */
+.legacy{background:var(--white);overflow:hidden}
+.legacy-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--s-10);align-items:start}
+.legacy-media{position:relative}
+.legacy-portrait{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);background:#e9eded}
+.legacy-portrait img{width:100%;height:auto;display:block;filter:grayscale(1) contrast(1.04)}
+.legacy-archive{position:absolute;right:-26px;bottom:-40px;width:52%;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-lg);border:5px solid #fff;background:#e9eded}
+.legacy-archive img{width:100%;height:auto;display:block;filter:grayscale(1) contrast(1.04)}
+.legacy-cap{font-size:12.5px;color:var(--text-muted);margin-top:var(--s-6);line-height:1.5;max-width:34ch}
+.legacy-cap strong{display:block;color:var(--black);font-size:14px;margin-bottom:3px}
+.legacy-body .t-body{max-width:60ch}
+.legacy-body .t-body+.t-body{margin-top:var(--s-3)}
+
+/* Milestones: a real date, a real event, nothing invented */
+.miles{list-style:none;margin-top:var(--s-6);display:grid}
+.miles li{display:grid;grid-template-columns:118px 1fr;gap:var(--s-3);padding:20px 0;border-top:1px solid rgba(13,13,13,.1)}
+.miles li:last-child{border-bottom:1px solid rgba(13,13,13,.1)}
+.miles .yr{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--teal)}
+.miles h4{font-size:16.5px;font-weight:800;margin-bottom:5px}
+.miles p{font-size:14.5px;color:var(--text-secondary);line-height:1.6;max-width:52ch}
+
+/* Membership strip */
+.member{display:flex;align-items:center;gap:var(--s-3);margin-top:var(--s-6);padding:18px 22px;
+  border:1px solid rgba(13,13,13,.1);border-radius:var(--radius);background:var(--grey-bg);max-width:520px}
+.member img{width:96px;height:auto;flex:none}
+.member p{font-size:14px;color:var(--text-secondary);line-height:1.55}
+.member strong{display:block;color:var(--black);font-size:15px;font-weight:800;margin-bottom:2px}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-3);margin-top:var(--s-6)}
+.person{background:#fff;border:1px solid rgba(13,13,13,.09);border-radius:var(--radius);overflow:hidden;
+  transition:transform var(--dur-normal) var(--ease-snappy),border-color var(--dur-normal),box-shadow var(--dur-normal)}
+.person:hover{transform:translateY(-5px);border-color:var(--teal);box-shadow:var(--shadow-md)}
+.person-photo{aspect-ratio:1/1;background:linear-gradient(180deg,#f7f9f9 0%,#eef3f3 100%);overflow:hidden}
+.person-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.person-body{padding:var(--s-3) var(--s-3) var(--s-4)}
+.person h3{font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.person .role{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:5px 10px;border-radius:6px}
+.person ul{list-style:none;display:grid;gap:8px;margin-top:14px}
+.person li{display:flex;gap:9px;align-items:center;font-size:13.5px;color:var(--text-secondary);word-break:break-word}
+.person li svg{width:15px;height:15px;flex:none;stroke:var(--teal);stroke-width:2;fill:none}
+.person li a:hover{color:var(--teal)}
+
+@media (max-width:1080px){
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .legacy-grid{grid-template-columns:1fr;gap:var(--s-8)}
+  .legacy-archive{position:static;width:60%;margin-top:14px;right:auto;bottom:auto}
+  .legacy-cap{margin-top:var(--s-3)}
+  .miles li{grid-template-columns:80px 1fr;gap:var(--s-2)}
+  .miles .yr{font-size:24px}
+}
+@media (max-width:600px){
+  .team-grid{grid-template-columns:1fr}
+  .member{flex-direction:column;align-items:flex-start;gap:14px}
 }

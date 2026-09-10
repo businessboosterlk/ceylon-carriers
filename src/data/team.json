@@ -1,0 +1,69 @@
+{
+  "_source": "Names, titles, photographs, emails and phone numbers published by the client on ceyloncarrierstravels.com, read 2026-09-09. NEVER add a person or a photograph the client has not published themselves. Confirm with the client before launch that every person here is happy to appear on the new site.",
+  "people": [
+    {
+      "slug": "udaya",
+      "name": "Udaya Nanayakkara",
+      "role": "Chairman",
+      "photo": "udaya.jpg",
+      "note": "Son of the founder. Took the business on in 1981."
+    },
+    {
+      "slug": "arjuna",
+      "name": "Arjuna Yatawara",
+      "role": "Managing Director",
+      "photo": "arjuna.jpg",
+      "email": "md@ceyloncarrierstravels.com",
+      "phone": "+94 773 116611"
+    },
+    {
+      "slug": "suhendrini",
+      "name": "Suhendrini Yatawara",
+      "role": "Director and CEO",
+      "photo": "suhendrini.jpg",
+      "email": "inbound@ceyloncarrierstravels.com",
+      "phone": "+94 768 232406"
+    },
+    {
+      "slug": "menaka",
+      "name": "Menaka Wijekoon",
+      "role": "Director and General Manager",
+      "photo": "menaka.jpg",
+      "email": "sales@ceyloncarrierstravels.com",
+      "phone": "+94 768 232404"
+    },
+    {
+      "slug": "sujitha",
+      "name": "Sujitha Peiris",
+      "role": "Manager",
+      "photo": "sujitha.jpg",
+      "email": "info@ceyloncarrierstravels.com",
+      "phone": "+94 768 232302"
+    },
+    {
+      "slug": "dulangika",
+      "name": "Dulangika Mimmindaarachchi",
+      "role": "Executive",
+      "photo": "dulangika.jpg",
+      "email": "info@ceyloncarrierstravels.com",
+      "phone": "+94 768 232303"
+    }
+  ],
+  "milestones": [
+    {
+      "year": "1973",
+      "title": "A travel house opens in Colombo",
+      "text": "Ceylon Carriers Travels starts arranging journeys in and out of Sri Lanka, grown out of the family's inland trucking and logistics business."
+    },
+    {
+      "year": "1981",
+      "title": "The second generation takes over",
+      "text": "Charles Nanayakkara hands the business to his son, Udaya Nanayakkara."
+    },
+    {
+      "year": "Today",
+      "title": "Still run from Colombo 07",
+      "text": "Udaya Nanayakkara chairs the company. The team below plans inbound tours and holidays abroad from the office at Horton Place."
+    }
+  ]
+}

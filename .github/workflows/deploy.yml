@@ -32,6 +32,10 @@ jobs:
         env:
           SITE_URL: https://businessboosterlk.github.io
           BASE_PATH: /ceylon-carriers
+      # Blocks the deploy if hero copy is not hard left on every page.
+      # Born 2026-09-10; see scripts/check-align.mjs for why.
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-align.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -11,9 +11,14 @@
     "dev": "astro dev --port 4637",
     "build": "astro build",
     "preview": "astro preview --port 4637",
-    "check": "astro check"
+    "check": "astro check",
+    "check:align": "node scripts/check-align.mjs",
+    "verify": "npm run build && npm run check:align"
   },
   "dependencies": {
     "astro": "^7.3.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
   }
 }
