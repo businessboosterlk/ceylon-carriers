@@ -75,7 +75,7 @@ button,a,[role="button"],select,input,label{-webkit-tap-highlight-color:transpar
 
 /* Typography utilities */
 .t-display{font-family:var(--font-display);font-size:var(--type-display);line-height:.98;letter-spacing:.01em;text-transform:uppercase}
-.t-headline{font-family:var(--font-display);font-size:var(--type-headline);line-height:1.05;letter-spacing:.01em;text-transform:uppercase}
+.t-headline{font-family:var(--font-display);font-size:var(--type-headline);line-height:1.12;letter-spacing:.01em;text-transform:uppercase}
 .t-label{font-size:var(--type-label);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
 .t-body{color:var(--text-secondary);max-width:62ch}
 
@@ -629,7 +629,7 @@ html.js-on .reveal.visible{opacity:1;transform:translateY(0)}
 .film-scrim{position:absolute;inset:0;z-index:1;
   background:linear-gradient(90deg,rgba(6,10,12,.88) 0%,rgba(6,10,12,.62) 46%,rgba(6,10,12,.3) 100%)}
 .film-inner{position:relative;z-index:2;max-width:640px;padding-block:var(--s-10)}
-.film-title{font-family:var(--font-display);font-size:clamp(38px,5.6vw,72px);line-height:1;
+.film-title{font-family:var(--font-display);font-size:clamp(38px,5.6vw,72px);line-height:1.12;
   letter-spacing:.005em;text-transform:uppercase;color:#fff;margin:14px 0 16px;text-shadow:0 8px 40px rgba(0,0,0,.4)}
 .film-sub{color:rgba(255,255,255,.86);font-size:clamp(15px,1.5vw,18px);max-width:48ch;margin-bottom:26px}
 .film-ctas{display:flex;gap:12px;flex-wrap:wrap}

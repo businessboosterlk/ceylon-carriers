@@ -74,7 +74,7 @@ main{display:block}
 .pkg-media .pk-badge{top:16px;left:16px}
 .pkg:nth-child(even) .pkg-media{order:2}
 .pkg-body{padding:var(--s-6) var(--s-6) var(--s-5);display:flex;flex-direction:column;gap:14px}
-.pkg-body h3{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);text-transform:uppercase;line-height:1.05;letter-spacing:.01em}
+.pkg-body h3{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);text-transform:uppercase;line-height:1.12;letter-spacing:.01em}
 .pkg-route{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--teal)}
 .pkg-body .t-body{max-width:48ch}
 .incl{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
@@ -135,11 +135,11 @@ main{display:block}
 .way:hover img{transform:scale(1.05)}
 .way::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,10,.86) 0%,rgba(8,10,10,.2) 55%,transparent 75%)}
 .way-body{position:relative;z-index:2;padding:var(--s-4)}
-.way-body h3{font-family:var(--font-display);font-size:clamp(26px,3vw,38px);text-transform:uppercase;line-height:1.05;margin:8px 0 8px}
+.way-body h3{font-family:var(--font-display);font-size:clamp(26px,3vw,38px);text-transform:uppercase;line-height:1.12;margin:8px 0 8px}
 .way-body p{font-size:14.5px;color:rgba(255,255,255,.82);max-width:36ch;margin-bottom:14px}
 .office{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-6);align-items:center}
 .office-card{background:#fff;border:1px solid rgba(13,13,13,.07);border-radius:var(--radius-lg);padding:var(--s-5);box-shadow:var(--shadow-sm)}
-.office-card h3{font-family:var(--font-display);font-size:30px;text-transform:uppercase;line-height:1.05;margin-bottom:var(--s-3)}
+.office-card h3{font-family:var(--font-display);font-size:30px;text-transform:uppercase;line-height:1.12;margin-bottom:var(--s-3)}
 .office-card address{font-style:normal;font-size:16px;line-height:1.7;color:var(--text-secondary)}
 .office-card address strong{color:var(--black)}
 .office-card .row{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid rgba(13,13,13,.08)}
@@ -277,7 +277,9 @@ img.logo-mark{border-radius:0;box-shadow:none;object-fit:contain;
 /* TYPE CLEARANCE (2026-09-10, after the comma in "SRI LANKA," landed on the
    line below). Anton is all-caps here, and its worst descender (a comma or
    semicolon) needs a line-height ratio of 1.013. Measured, not guessed:
-   ink ascent 88.3 + ink descent 13.0 = 101.3 at a 100px font. Never set a
-   display heading below 1.05, which is what .t-headline already uses, so the
+   ink ascent 88.3 + ink descent 13.0 = 101.3 at a 100px font. The floor is 1.05 for the big heroes and 1.12 for section
+   headings, because CI measures a FALLBACK font with taller ink (it needed
+   1.087) and every visitor sees that fallback for a moment before Anton loads.
+   Never set a display heading below 1.05, which is what .t-headline already uses, so the
    whole site is consistent and every heading keeps real clearance. scripts/check-align.mjs fails the build if any
    heading's rendered glyphs overlap the line beneath. */

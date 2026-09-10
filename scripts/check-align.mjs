@@ -7,6 +7,14 @@
 // flex item and `margin:0 auto` centred it. Measured 210px of left margin on a
 // 1265px viewport. A rule in a document did not stop it. This check does.
 //
+// TRAP, found 2026-09-10: this Mac has Anton INSTALLED as a system font, CI does
+// not. So the same check measured different glyphs in the two places and the
+// numbers disagreed (t-headline needed 1.042 here, 1.087 there). Blocking the
+// webfont locally does not reproduce it, because the local install still wins.
+// That is why every failure now prints the font it measured, and why the section
+// headings are set above the FALLBACK's requirement rather than Anton's: every
+// visitor sees the fallback for a moment before the webfont arrives.
+//
 // It asserts, on every built page, that the hero headline starts at exactly the
 // same x as the brand mark in the nav, and that no heading block is centred.
 //
@@ -67,6 +75,7 @@ for (const path of PAGES) {
   });
 
   // --- TYPE CLEARANCE: do any glyphs land on the line beneath? ---
+  await page.evaluate(() => document.fonts.ready);
   const type = await page.evaluate(() => {
     const cv = document.createElement('canvas').getContext('2d');
     const bad = [];
@@ -87,7 +96,8 @@ for (const path of PAGES) {
       const clearance = lh - ink;
       // demand real margin, not a hairline: 2% of the font size
       if (clearance < fs * 0.02) {
-        bad.push({ sel: el.className ? '.' + String(el.className).split(' ')[0] : el.tagName,
+        bad.push({ font: (document.fonts.check(`${fs}px Anton`) ? 'Anton' : 'FALLBACK, Anton did not load'),
+                   sel: el.className ? '.' + String(el.className).split(' ')[0] : el.tagName,
                    text: txt.slice(0, 40), fontSize: +fs.toFixed(1),
                    lineHeight: +lh.toFixed(1), ink: +ink.toFixed(1),
                    clearance: +clearance.toFixed(1), lines });
@@ -97,9 +107,13 @@ for (const path of PAGES) {
   });
 
   const name = path || '(home)';
+  if (path === PAGES[0]) {
+    const f = await page.evaluate(() => document.fonts.check('100px Anton') ? 'Anton' : 'FALLBACK (Anton did not load)');
+    console.log(`  display font in this environment: ${f}`);
+  }
   if (type.length) {
     for (const t of type) {
-      fails.push(`${name}: "${t.text}" (${t.sel}) has ${t.clearance}px of clearance across ${t.lines} lines. `
+      fails.push(`${name}: "${t.text}" (${t.sel}, measured in ${t.font}) has ${t.clearance}px of clearance across ${t.lines} lines. `
         + `Its glyphs are ${t.ink}px tall in a ${t.lineHeight}px line box, so a descender lands on the line below. `
         + `Raise line-height (${(t.lineHeight / t.fontSize).toFixed(3)} now, needs about ${((t.ink / t.fontSize) + 0.02).toFixed(3)}).`);
     }
