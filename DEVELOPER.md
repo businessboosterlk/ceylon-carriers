@@ -22,6 +22,8 @@ npm install          # Node 22.12 or newer (see package.json engines)
 npm run dev          # http://localhost:4637/ceylon-carriers/
 npm run build        # writes dist/
 npm run preview      # serves dist/ on the same port
+npm run check:align  # fails if hero copy is not hard left on any page
+npm run verify       # build + check:align. Run this before you push
 ```
 
 The site lives under the `/ceylon-carriers/` sub-path on the preview host, so
@@ -40,6 +42,8 @@ every URL in dev and preview includes it. See "Moving to the real domain" below.
 | `src/pages/sitemap.xml.js` | Generates `sitemap.xml` at build time. |
 | `src/data/tours.json` | The nine Sri Lanka tours: routes, highlights, inclusions, images. **This is the CMS swap point.** If you give the client a way to edit tours, feed this shape. |
 | `src/data/packages.json` | The three priced packages abroad and the "ask for a quote" destinations. Same idea. |
+| `src/data/team.json` | The six people on the About page and the three history milestones. Every name, role, photo, email and number came from the client's own website. Removing someone is deleting one block. |
+| `scripts/check-align.mjs` | Loads every built page in a real browser and fails if the hero headline is not hard left, level with the brand mark. It also fails on any centred heading block. Runs in CI before the deploy. |
 | `src/styles/global.css` | The original stylesheet, extracted byte for byte from the single-file build. Owns the home page and the shared components. |
 | `src/styles/pages.css` | Everything added for the inner pages. Builds on the tokens in `global.css`. |
 | `src/scripts/site.js` | Behaviour shared by every page: nav, scroll reveal, count-up, WhatsApp links, enquiry modal, film band. Every block guards for elements that only exist on some pages. |
@@ -95,7 +99,12 @@ to add the call are marked by the `window.open(waURL(` lines.
 6. **Office hours** are not on the site because nobody has stated them.
 7. **Search Console and GA4** slots are in `Layout.astro` (two commented lines in
    the head). Fill them at launch and submit `sitemap.xml` in Search Console.
-8. Run `npm run build` and open every page on a phone before you push.
+8. **Team photographs and direct numbers.** The About page shows six named staff
+   with photos, emails and mobile numbers, plus two archive photographs of the
+   late founder. All of it was copied from what the client already publishes on
+   their own website. Confirm they are happy for it to appear here before
+   the site leaves `noindex`. Edit or remove anyone in `src/data/team.json`.
+9. Run `npm run verify` and open every page on a phone before you push.
 
 ## Moving to the real domain
 
@@ -124,6 +133,18 @@ entry follows. Then:
   "correct" it from any other source.
 - **The home page design and copy.** The client signed it off in July 2026.
 - **WhatsApp first.** Every call to action reaches WhatsApp with context.
+- **Hero copy sits HARD LEFT**, at exactly the same x as the brand mark in the
+  nav. No heading block is centred anywhere. This is a standing rule from the agency
+  owner. `scripts/check-align.mjs` enforces it and blocks the deploy if it
+  regresses. The trap that caused it once: the hero is `display:flex`, so an
+  inner container with `margin:0 auto` becomes shrink-to-fit and the auto
+  margins centre it. Keep the `width:100%` on `.phero .container`.
+- **The logo is the client's own file**, `public/images/cct-logo.png`, cut out of
+  their own lockup with a transparent background. Never redraw it.
+- **Any image sized with `width:100%` needs `height:auto`.** The global
+  stylesheet sets `max-width` but not `height`, so an `<img>` carrying a
+  `height` attribute will otherwise stretch to it. That happened once and
+  distorted a portrait.
 - **Spelling is British English, no em dashes, no comma before "and".** The
   agency runs a checker on the rendered pages; keep new copy to the same rule.
 
@@ -138,6 +159,9 @@ entry follows. Then:
   asset, no placeholder phone number.
 - Preview on desktop and a 375px phone: no horizontal overflow, no console
   errors, every WhatsApp link carries +94 768 232406.
+- Left-align check: 5 of 5 pages, hero headline and brand mark both at 24px.
+  Proven both ways, it reports 275px against a deliberately broken build.
+- Every archive and team photograph renders at its true aspect ratio.
 
 ## Contacts
 
