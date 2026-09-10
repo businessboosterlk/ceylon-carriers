@@ -15,7 +15,7 @@ import { SITE, IMG, waURL } from './config.js';
   // Dedicated bg-*.jpg images can replace these later for even more variety.
   const VIBES=[
     {key:'cool',label:'Cool & Misty',bg:IMG+'bg-cool.jpg',tag:'From the Himalayas of Bhutan to the temples of Japan and Sri Lanka’s misty tea country',
-      dests:[{name:'Bhutan',img:IMG+'tigers-nest.jpg'},{name:'Japan',img:IMG+'japan.jpg'},{name:'Hill Country, Sri Lanka',img:IMG+'tea-hills.jpg'}]},
+      dests:[{name:'Bhutan',img:IMG+'tigers-nest.jpg'},{name:'Japan',img:IMG+'japan.jpg'},{name:'Hill Country, Sri Lanka',img:IMG+'hill-country.jpg'}]},
     {key:'beach',label:'Beach & Sun',bg:IMG+'bg-beach.jpg',tag:'Island sun and warm seas, from the Maldives to Bali to southern Sri Lanka',
       dests:[{name:'The Maldives',img:IMG+'maldives.jpg'},{name:'Bali, Indonesia',img:IMG+'bali.jpg'},{name:'Southern Sri Lanka',img:IMG+'south-coast.jpg'}]},
     {key:'wild',label:'Wild & Nature',bg:IMG+'bg-wild.jpg',tag:'Safaris and untamed trails, from the African savannah to the wilds of Sri Lanka',

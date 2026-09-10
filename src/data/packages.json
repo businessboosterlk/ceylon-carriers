@@ -43,8 +43,8 @@
   ],
   "more": [
     { "name": "The Maldives", "line": "Overwater villas on turquoise lagoons", "image": "maldives.jpg", "alt": "Overwater villas on a turquoise Maldives lagoon" },
-    { "name": "Golden Triangle, India", "line": "Delhi, Jaipur and Agra with the Taj Mahal", "image": "taj-arch.jpg", "alt": "The Taj Mahal framed by a marble archway at sunrise" },
-    { "name": "Bali", "line": "Island temples and emerald rice terraces", "image": "bali.jpg", "alt": "Rice terraces and temple gate at sunrise in Bali" },
+    { "name": "Golden Triangle, India", "line": "Delhi, Jaipur and Agra with the Taj Mahal", "image": "taj-arch.jpg", "alt": "The Taj Mahal at sunrise, seen across its reflecting pool" },
+    { "name": "Bali", "line": "Island temples and emerald rice terraces", "image": "bali.jpg", "alt": "Emerald rice terraces below a volcano at sunrise in Bali" },
     { "name": "Kenya Safari", "line": "The Masai Mara and the big five", "image": "africa.jpg", "alt": "Elephants on the golden African savannah at sunset" },
     { "name": "Turkey", "line": "Hot-air balloons over Cappadocia", "image": "turkey.jpg", "alt": "Hot-air balloons over the rock valleys of Cappadocia" },
     { "name": "Japan", "line": "Snow temples and cherry blossom", "image": "japan.jpg", "alt": "A temple in Japan with cherry blossom" }
